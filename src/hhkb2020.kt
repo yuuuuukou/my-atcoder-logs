@@ -1,4 +1,8 @@
-fun main(args: Array<String>) {
+fun main() {
+    solveA()
+}
+
+fun solveA() {
     val s = readLine()
     val t = readLine()
 
