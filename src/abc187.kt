@@ -9,7 +9,7 @@ fun solveABC187C() {
     val map = mutableMapOf<String, String>()
     for (i in 0 until n) {
         val s = readLine()!!
-        map.put(s, "1")
+        map[s] = "1"
 
         val s2 = if (s.startsWith("!")) s.replace("!", "") else "!$s"
 
