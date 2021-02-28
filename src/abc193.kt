@@ -2,7 +2,7 @@ import kotlin.math.min
 import kotlin.math.pow
 
 fun main(args: Array<String>) {
-    solveABC193C()
+    solveABC193D()
 }
 
 fun solveABC193D() {
@@ -12,6 +12,7 @@ fun solveABC193D() {
     val s = readLine()!!
     val t = readLine()!!
 
+    // 各数字が手札中に何枚あるかのmap
     val sMap = get(s)
     val tMap = get(t)
 
@@ -20,7 +21,20 @@ fun solveABC193D() {
         for (ti in 1..9) {
             if (calc(sMap, si) > calc(tMap, ti)) {
                 // 勝ち
-                win += (k / (k * 9).toDouble()) * (k / (k * 9).toDouble())
+                // siを引くパターンは k-(既にsMapで出てる分)-(既にtMapで出てる分)
+                val ss = sMap[si] ?: 0
+                val ts = tMap[si] ?: 0
+                val sRemain = k - ss - ts
+                // tiを引くパターンも k-(既にsMapで出てる分)-(既にtMapで出てる分)
+                val st = sMap[ti] ?: 0
+                val tt = tMap[ti] ?: 0
+                var tRemain = k - st - tt
+                // si == tiの時はsiでも使用してるので-1
+                if (si == ti) tRemain--
+                // 残りの山札
+                val remainAll = 9 * k - 8
+                // 全体としては siを引くパターン / 残りの山札 * siを引くパターン / 残りの山札(siを引いてるので-1)
+                win += sRemain.toDouble() / remainAll * tRemain / (remainAll - 1)
             }
         }
     }
