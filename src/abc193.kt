@@ -2,7 +2,7 @@ import kotlin.math.min
 import kotlin.math.pow
 
 fun main(args: Array<String>) {
-    solveABC193D()
+    solveABC193C()
 }
 
 fun solveABC193D() {
@@ -55,23 +55,34 @@ private fun get(string: String): Map<Int, Int> {
     return map
 }
 
-// FIXME: TLE
 fun solveABC193C() {
     val n = readLine()!!.toLong()
 
-    val map = mutableMapOf<Long, Boolean>()
-    for (i in 2..n) {
-        for (j in 2..n) {
-            val res = i.toDouble().pow(j.toDouble()).toLong()
-            if (res <= n) {
-                map[res] = true
-            } else {
-                break
-            }
+    val set = mutableSetOf<Long>()
+// TLE
+//    for (i in 2..n) {
+//        for (j in 2..n) {
+//            val res = i.toDouble().pow(j.toDouble()).toLong()
+//            if (res <= n) {
+//                set.add(res)
+//            } else {
+//                break
+//            }
+//        }
+//    }
+
+// 回答例
+    var i = 2L
+    while (i * i <= n) {
+        var x = i * i
+        while (x <= n) {
+            set.add(x)
+            x *= i
         }
+        i++
     }
 
-    println(n - map.size)
+    println(n - set.size)
 }
 
 fun solveABC193B() {
