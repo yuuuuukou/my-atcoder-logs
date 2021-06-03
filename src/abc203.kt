@@ -2,32 +2,29 @@ fun main(args: Array<String>) {
     solveABC203C()
 }
 
-// FIXME:TLE
 fun solveABC203C() {
-    val (n, k) = readLine()!!.split(" ").map { it.toLong() }
+    var (n, k) = readLine()!!.split(" ").map { it.toLong() }
 
-    val a = mutableMapOf<Long, Long>()
+    val friends = mutableListOf<Pair<Long, Long>>()
 
     for (i in 0 until n) {
         val (ai, bi) = readLine()!!.split(" ").map { it.toLong() }
 
-        val tmp1 = (a[ai] ?: 0L)
-        a[ai] = (a[ai] ?: 0L) + bi
+        friends.add(Pair(ai, bi))
     }
 
-    var money = k
-    var totalCost = money
-    var village = 0L
+    friends.sortBy { it.first }
 
-    while (money > 0) {
-        val friendsMoney = a.filterKeys { key -> key in village + 1..totalCost }.values.sum()
+    for (i in 0 until n) {
+        // 直近の友達 friends[i.toInt()].first が 所持金 k より遠くにいるならそこで終わり
+        if (friends[i.toInt()].first > k) {
+            break
+        }
 
-        village += money
-        money = friendsMoney
-        totalCost += friendsMoney
+        k += friends[i.toInt()].second
     }
 
-    println(village)
+    println(k)
 }
 
 fun solveABC203B() {
