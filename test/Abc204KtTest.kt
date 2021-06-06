@@ -1,4 +1,3 @@
-import main.solveABC204A
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Assert
 import org.junit.Test
