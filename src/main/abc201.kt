@@ -1,4 +1,4 @@
-@file:Suppress("ControlFlowWithEmptyBody")
+package main
 
 import kotlin.system.exitProcess
 

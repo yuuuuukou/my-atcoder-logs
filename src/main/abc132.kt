@@ -1,3 +1,5 @@
+package main
+
 fun main(args: Array<String>) {
     /*val n = */readLine()!!.toInt()
     val dList = readLine()!!.split(" ").map { it.toInt() }.sorted()

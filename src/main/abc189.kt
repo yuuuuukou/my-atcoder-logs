@@ -1,3 +1,5 @@
+package main
+
 import java.lang.Integer.min
 import java.math.BigDecimal
 import kotlin.math.max

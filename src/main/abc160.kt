@@ -1,3 +1,5 @@
+package main
+
 fun main(args: Array<String>) {
     val (k, _) = readLine()!!.split(" ").map { it.toInt() }
     val a = readLine()!!.split(" ").map { it.toInt() }

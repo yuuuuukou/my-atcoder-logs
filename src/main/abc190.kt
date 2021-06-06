@@ -1,3 +1,5 @@
+package main
+
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.system.exitProcess

@@ -1,3 +1,5 @@
+package main
+
 fun main(args: Array<String>) {
     val s = readLine()!!.toInt()
 

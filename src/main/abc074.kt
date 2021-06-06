@@ -1,3 +1,5 @@
+package main
+
 import kotlin.math.absoluteValue
 
 fun main(args: Array<String>) {

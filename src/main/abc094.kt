@@ -1,3 +1,5 @@
+package main
+
 import kotlin.math.min
 
 fun main(args: Array<String>) {

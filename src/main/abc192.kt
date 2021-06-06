@@ -1,3 +1,5 @@
+package main
+
 import kotlin.math.pow
 import kotlin.system.exitProcess
 
