@@ -15,7 +15,7 @@
     </inspection_tool>
     <inspection_tool class="TestFunctionName" enabled="true" level="WEAK WARNING" enabled_by_default="false">
       <scope name="Tests" level="WEAK WARNING" enabled="true">
-        <option name="namePattern" value="[a-z][A-Za-z_\d亜-熙ぁ-んァ-ヶ]*" />
+        <option name="namePattern" value="[A-Za-z_\d亜-熙ぁ-んァ-ヶ]*" />
       </scope>
     </inspection_tool>
   </profile>
