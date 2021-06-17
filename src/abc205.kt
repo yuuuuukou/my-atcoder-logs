@@ -1,5 +1,7 @@
+import kotlin.math.abs
+
 fun main(args: Array<String>) {
-    solveABC205D()
+    solveABC205C()
 }
 
 fun solveABC205D() {
@@ -46,18 +48,53 @@ fun solveABC205D() {
 }
 
 fun solveABC205C() {
-    val (a, b, c) = readLine()!!.split(" ").map { it.toBigDecimal() }
+    val (a, b, c) = readLine()!!.split(" ").map { it.toLong() }
 
-    when {
-        a.pow(c.toInt()) == b.pow(c.toInt()) -> {
+    val aSignum = getSignumP1PowP2(a, c)
+    val bSignum = getSignumP1PowP2(b, c)
+
+    if (aSignum == -1 && bSignum >= 0) {
+        println("<")
+    } else if (aSignum >= 0 && bSignum == -1) {
+        println(">")
+    } else {
+        if (abs(a) == abs(b)) {
             println("=")
-        }
-        a.pow(c.toInt()) < b.pow(c.toInt()) -> {
+        } else if (abs(a) < abs(b)) {
             println("<")
-        }
-        else -> {
+        } else {
             println(">")
         }
+    }
+
+//    when {
+//        a.pow(c.toInt()) == b.pow(c.toInt()) -> {
+//            println("=")
+//        }
+//        a.pow(c.toInt()) < b.pow(c.toInt()) -> {
+//            println("<")
+//        }
+//        else -> {
+//            println(">")
+//        }
+//    }
+}
+
+/**
+ * pow計算後の符号を計算
+ * C問題用
+ */
+fun getSignumP1PowP2(p1: Long, p2: Long): Int {
+    val p1Tmp = p1.toBigDecimal()
+
+    return if (p1Tmp.signum() == -1) {
+        if (p2 % 2 == 0L) {
+            1
+        } else {
+            -1
+        }
+    } else {
+        1
     }
 }
 
@@ -84,16 +121,3 @@ fun solveABC205A() {
 
     println(a * b / 100.0)
 }
-
-
-//サクラでやってることをvimでできるようにする
-//⇒軽量エディタ枠をサクラ→vimへ移行
-//・サクラエディタでやってること洗い出し
-//・即閉じないようにする(サクラっぽく)or編集時点のものを維持できるようにする(vs codeっぽく)
-//
-//・必要に応じてvimプラグインを各エディタへ導入
-//
-//
-//
-//エラー出てるところを無視できるようにする
-//　Androidのとこは自動生成の類じゃん？たぶん
