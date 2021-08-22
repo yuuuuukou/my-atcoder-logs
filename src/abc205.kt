@@ -1,13 +1,22 @@
 import kotlin.math.abs
 
 fun main(args: Array<String>) {
-    solveABC205C()
+    solveABC205D()
 }
 
 fun solveABC205D() {
     val (n, q) = readLine()!!.split(" ").map { it.toInt() }
     val a = readLine()!!.split(" ").map { it.toLong() }.toMutableList()
-    val a2 = a.toMutableSet()
+
+    // ai以下の対象となる整数の個数を数える
+    val low = Array<Long>(n) { 0 }
+    for (i in 0 until n) {
+        // a = 3,5 であれば、i=0 のときに1,2の2個対象になる
+        // a[0] - (0+1) = 3-1 = 2
+        // a = 3,5 であれば、i=1 のときに1,2,4の3個対象になる
+        // a[1] - (1+1) = 5-2 = 3
+        low[i] = a[i] - (i + 1)
+    }
 
     for (i in 1..q) {
         val ki = readLine()!!.toLong()
@@ -23,12 +32,6 @@ fun solveABC205D() {
             // に変換
             var smallItemCount = index + 1
 
-            while (a2.contains(ki + smallItemCount)) {
-                smallItemCount++
-            }
-
-            // 小さいのが減ってるので、i番目はその個数を足した値になっている
-            println(ki + smallItemCount)
         } else {
             // 対象の値が無ければ、対象の値より大きい最も近い値のindex + 1が負数で返る
 
@@ -41,8 +44,6 @@ fun solveABC205D() {
             // に変換
             val smallItemCount = (-1 * index) - 1
 
-            // 小さいのが減ってるので、i番目はその個数を足した値になっている
-            println(ki + smallItemCount)
         }
     }
 }
