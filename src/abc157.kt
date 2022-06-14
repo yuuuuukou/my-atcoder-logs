@@ -14,18 +14,17 @@ fun solveABC157B() {
         b[bi] = true
     }
 
-    if (
-    // 縦
-            b[a11] == true && b[a21] == true && b[a31] == true
-            || b[a12] == true && b[a22] == true && b[a32] == true
-            || b[a13] == true && b[a23] == true && b[a33] == true
-            // 横
-            || b[a11] == true && b[a12] == true && b[a13] == true
-            || b[a21] == true && b[a22] == true && b[a23] == true
-            || b[a31] == true && b[a32] == true && b[a33] == true
-            // 斜め
-            || b[a11] == true && b[a22] == true && b[a33] == true
-            || b[a13] == true && b[a22] == true && b[a31] == true
+    if (// 縦
+        b[a11] == true && b[a21] == true && b[a31] == true
+        || b[a12] == true && b[a22] == true && b[a32] == true
+        || b[a13] == true && b[a23] == true && b[a33] == true
+        // 横
+        || b[a11] == true && b[a12] == true && b[a13] == true
+        || b[a21] == true && b[a22] == true && b[a23] == true
+        || b[a31] == true && b[a32] == true && b[a33] == true
+        // 斜め
+        || b[a11] == true && b[a22] == true && b[a33] == true
+        || b[a13] == true && b[a22] == true && b[a31] == true
     ) {
         println("Yes")
     } else {
