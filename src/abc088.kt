@@ -1,4 +1,8 @@
 fun main(args: Array<String>) {
+    solveABC088B()
+}
+
+fun solveABC088B() {
     /*val n = */readLine()!!.toInt()
     val a = readLine()!!.split(" ").map { it.toInt() }
 
@@ -15,5 +19,4 @@ fun main(args: Array<String>) {
     }
 
     println(aliceSum - bobSum)
-
 }
