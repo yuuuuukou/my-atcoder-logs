@@ -1,5 +1,5 @@
 fun main(args: Array<String>) {
-    solveABC157B()
+    solveABC157A()
 }
 
 fun solveABC157B() {
@@ -29,5 +29,15 @@ fun solveABC157B() {
         println("Yes")
     } else {
         println("No")
+    }
+}
+
+fun solveABC157A() {
+    val n = readLine()!!.toInt()
+
+    if (n % 2 == 0) {
+        println(n / 2)
+    } else {
+        println(n / 2 + 1)
     }
 }
