@@ -1,6 +1,10 @@
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
+    solveABC068B()
+}
+
+fun solveABC068B() {
     val n = readLine()!!.toInt()
 
     var result = 2
