@@ -1,5 +1,5 @@
 fun main(args: Array<String>) {
-    solveABC156C()
+    solveABC156B()
 }
 
 private fun solveABC156C() {
@@ -19,4 +19,16 @@ private fun solveABC156C() {
     }
 
     print(min)
+}
+
+fun solveABC156B() {
+    val (n, k) = readLine()!!.split(" ").map { it.toInt() }
+
+    var ndash = n
+    var ansDigit = 1
+    while (ndash >= k) {
+        ndash /= k
+        ansDigit++
+    }
+    println(ansDigit)
 }
