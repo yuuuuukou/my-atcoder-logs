@@ -1,5 +1,35 @@
 fun main(args: Array<String>) {
-    solveABC081B()
+    solveABC081C()
+}
+
+fun solveABC081C() {
+    val (_, k) = readLine()!!.split(" ").map { it.toInt() }
+    val a = readLine()!!.split(" ").map { it.toInt() }
+
+    // 種類ごとの数を数える
+    val map = mutableMapOf<Int, Int>()
+    for (ai in a) {
+        map[ai] = (map[ai] ?: 0) + 1
+    }
+
+    // 種類ごとの数をリストにつっこんでソート
+    val list = mutableListOf<Int>()
+    for (item in map) {
+        list.add(item.value)
+    }
+    val listAsc = list.sorted()
+
+    // リストの末尾k要素までをカウント
+    var res = 0
+    for ((i, item) in listAsc.withIndex()) {
+        if (i >= listAsc.size - k) {
+            // 末尾k要素はそのままで良いので数えない
+        } else {
+            res += item
+        }
+    }
+
+    println(res)
 }
 
 fun solveABC081B() {
