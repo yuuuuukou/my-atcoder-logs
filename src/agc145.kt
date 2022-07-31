@@ -1,3 +1,6 @@
+import kotlin.math.max
+import kotlin.math.min
+
 fun main(args: Array<String>) {
     solveAGC145B()
 }
@@ -5,25 +8,11 @@ fun main(args: Array<String>) {
 fun solveAGC145B() {
     val (n, a, b) = readLine()!!.split(" ").map { it.toLong() }
 
-    var aliceWinCnt = 0L
-
-    var tmp = 0L
-    while (tmp < n) {
-        tmp += a
-        aliceWinCnt++
+    fun f(x: Long): Long {
+        return (x / a) * min(a, b) + min(x % a, b - 1)
     }
 
-    if (n % a != 0L) {
-        aliceWinCnt -= 1
-    }
-
-    aliceWinCnt *= b
-
-    if (n % a != 0L) {
-        aliceWinCnt -= (b - a)
-    }
-
-    println(aliceWinCnt)
+    println(max(f(n) - f(a - 1), 0))
 }
 
 fun solveAGC145A() {
