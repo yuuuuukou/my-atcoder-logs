@@ -4,54 +4,25 @@ fun main(args: Array<String>) {
 
 fun solveABC263C() {
     val (n, m) = readLine()!!.split(" ").map { it.toInt() }
+    dfs(mutableListOf(), n, m)
+}
 
-    val matrix = mutableListOf<MutableList<Int>>()
-
-    // 0行目を固定で作成
-    val firstLine = mutableListOf<Int>()
-    for (i in 0 until n) {
-        if (i == 0) {
-            firstLine.add(1)
-        } else {
-            firstLine.add(firstLine[i - 1] + 1)
-        }
+fun dfs(a: MutableList<Int>, n: Int, m: Int) {
+    if (a.size == n) {
+        println(a.joinToString(" "))
+        return
     }
-    firstLine.add(100) // indexあふれないように
-    matrix.add(firstLine)
-
-    // 1行目以降を作成
-    var creatingLine = 1
-    while (matrix[creatingLine - 1][0] != n || matrix[creatingLine - 1][n - 1] != m) {
-        val line = mutableListOf<Int>()
-        line.add(100) // indexあふれないように
-        var mustStopIncrement = false
-        for (i in n - 1 downTo 0) {
-            val top = matrix[creatingLine - 1][i]
-            val right = line.last()
-            val topRight = matrix[creatingLine - 1][i + 1]
-            if (!mustStopIncrement) {
-                if (top < m) {
-                    if (top + 1 < right) {
-                        line.add(top + 1)
-                        mustStopIncrement = true
-                    } else {
-                        line.add(top)
-                    }
-                } else {
-                    line.add(top)
-                }
-            } else {
-                line.add(top)
-            }
-        }
-        line.reverse()
-        matrix.add(line)
-        creatingLine++
+    val start = if (a.size == 0) {
+        1
+    } else {
+        a[a.lastIndex] + 1
     }
 
-    for (line in matrix) {
-        line.removeAt(line.lastIndex)
-        println(line.joinToString(" "))
+    for (i in start until m + 1) {
+        val aDash = mutableListOf<Int>()
+        aDash.addAll(a)
+        aDash.add(i)
+        dfs(aDash, n, m)
     }
 }
 
