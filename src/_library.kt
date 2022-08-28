@@ -1,3 +1,5 @@
+import kotlin.math.pow
+
 class _library {
     private fun readLn() = readLine()!!
     private fun readStrings() = readLn().split(" ").toMutableList()
@@ -5,6 +7,32 @@ class _library {
     private fun readInts() = readLn().split(" ").map { it.toInt() }.toMutableList()
     private fun readLong() = readLn().toLong()
     private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
+
+    fun bitSerarch() {
+        val n = 10 // readLine()!!.toInt()
+
+        val pattern = 2.0.pow(n).toInt()
+        for (bit in 0 until pattern) {
+            // ビットリスト i番目を選ぶ/選ばない の状態を保持
+            val bits = mutableListOf<Boolean>()
+            // 証言リスト
+            val tmpList = MutableList<Boolean?>(n) { null }
+            for (i in 0 until n) {
+                // bit演算した結果の10進数 ≒ iビット目にビットが立っているか
+                val bitAsInt = bit and (1 shl i)
+                // 10進数で見て0以上であれば、この桁にbitが立ってる
+                if (bitAsInt > 0) {
+                    bits.add(true)
+                    tmpList[i] = true
+                } else {
+                    bits.add(false)
+                    tmpList[i] = false
+                }
+            }
+
+            // 状態に応じた処理
+        }
+    }
 
     /**
      * next_permutation
