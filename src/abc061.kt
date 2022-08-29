@@ -1,5 +1,12 @@
+private fun readLn() = readLine()!!
+private fun readStrings() = readLn().split(" ").toMutableList()
+private fun readInt() = readLn().toInt()
+private fun readInts() = readLn().split(" ").map { it.toInt() }.toMutableList()
+private fun readLong() = readLn().toLong()
+private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
+
 fun main(args: Array<String>) {
-    solveABC061B()
+    solveABC061A()
 }
 
 fun solveABC061B() {
@@ -16,5 +23,14 @@ fun solveABC061B() {
 
     for (i in 1..n) {
         println(resMap[i] ?: 0)
+    }
+}
+
+fun solveABC061A() {
+    val (a, b, c) = readInts()
+    if (c in a..b) {
+        println("Yes")
+    } else {
+        println("No")
     }
 }
