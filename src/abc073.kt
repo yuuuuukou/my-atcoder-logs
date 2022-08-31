@@ -6,16 +6,17 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC069A()
+    solveABC073A()
 }
 
-fun solveABC069B() {
-    val s = readLine()!!
+fun solveABC073A() {
+    val n = readLn()
 
-    println("${s[0]}${s.length - 2}${s[s.length - 1]}")
-}
-
-fun solveABC069A() {
-    val (n, m) = readInts()
-    println((n - 1) * (m - 1))
+    for (ni in n) {
+        if (ni.toString() == "9") {
+            println("Yes")
+            return
+        }
+    }
+    println("No")
 }

@@ -1,3 +1,5 @@
+import kotlin.math.absoluteValue
+
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
 private fun readInt() = readLn().toInt()
@@ -6,16 +8,16 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC069A()
+    solveABC076A()
 }
 
-fun solveABC069B() {
-    val s = readLine()!!
+fun solveABC076A() {
+    val r = readInt()
+    val g = readInt()
 
-    println("${s[0]}${s.length - 2}${s[s.length - 1]}")
-}
+    // (r + x)/2 = g
+    // x/2 = g - r/2
+    val x = 2 * g - r
 
-fun solveABC069A() {
-    val (n, m) = readInts()
-    println((n - 1) * (m - 1))
+    println(x)
 }
