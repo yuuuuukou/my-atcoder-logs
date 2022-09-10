@@ -1,5 +1,12 @@
+private fun readLn() = readLine()!!
+private fun readStrings() = readLn().split(" ").toMutableList()
+private fun readInt() = readLn().toInt()
+private fun readInts() = readLn().split(" ").map { it.toInt() }.toMutableList()
+private fun readLong() = readLn().toLong()
+private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
+
 fun main(args: Array<String>) {
-    solveABC087B()
+    solveABC087A()
 }
 
 fun solveABC087B() {
@@ -20,4 +27,17 @@ fun solveABC087B() {
     }
 
     println(cnt)
+}
+
+fun solveABC087A() {
+    val x = readInt()
+    val a = readInt()
+    val b = readInt()
+
+    var ans = x
+    ans -= a
+    while (ans >= b) {
+        ans -= b
+    }
+    println(ans)
 }
