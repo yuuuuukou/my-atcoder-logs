@@ -6,21 +6,14 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC102A()
+    solveABC100A()
 }
 
-fun solveABC102B() {
-    /*val n = */readLine()!!
-    val a = readLine()!!.split(" ").map { it.toInt() }
-
-    print(a.max()!! - a.min()!!)
-}
-
-fun solveABC102A() {
-    val n = readInt()
-    if (n % 2 != 0) {
-        println(n * 2)
+fun solveABC100A() {
+    val (a,b) = readInts()
+    if (a <= 8 && b <= 8) {
+        println("Yay!")
     } else {
-        println(n)
+        println(":(")
     }
 }
