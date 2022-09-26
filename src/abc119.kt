@@ -1,6 +1,3 @@
-import java.util.Date
-import solveABC119A as solveABC119A
-
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
 private fun readInt() = readLn().toInt()
