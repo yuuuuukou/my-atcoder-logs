@@ -1,6 +1,3 @@
-import kotlin.math.max
-import kotlin.math.min
-
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
 private fun readInt() = readLn().toInt()
@@ -11,22 +8,16 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC120A()
+    solveABC126A()
 }
 
-fun solveABC120B() {
-    val (a, b, k) = readLine()!!.split(" ").map { it.toInt() }
-
-    val list = mutableListOf<Int>()
-    for (i in 1..max(a, b)) {
-        if (a % i == 0 && b % i == 0) {
-            list.add(i)
-        }
+fun solveABC126A() {
+    val (n, k) = readInts()
+    val s = readLn()
+    if (k == s.length) {
+        println(s.substring(0 until k - 1) + s.substring(k - 1..k - 1).toLowerCase())
+    } else {
+        println(s.substring(0 until k - 1) + s.substring(k - 1..k - 1).toLowerCase() + s.substring(k..s.lastIndex))
     }
-    println(list.reversed()[k - 1])
-}
 
-fun solveABC120A() {
-    val (a, b, c) = readInts()
-    println(min(b / a, c))
 }
