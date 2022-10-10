@@ -1,3 +1,5 @@
+import kotlin.math.max
+
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
 private fun readInt() = readLn().toInt()
@@ -8,29 +10,10 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC144A()
+    solveABC143A()
 }
 
-private fun solveABC144B() {
-    val n = readLine()!!.toInt()
-
-    var result = "No"
-    for (i in 1..9) {
-        for (j in 1..9) {
-            if (i * j == n) {
-                result = "Yes"
-            }
-        }
-    }
-
-    println(result)
-}
-
-fun solveABC144A() {
+fun solveABC143A() {
     val (a, b) = readInts()
-    if (a <= 9 && b <= 9) {
-        println(a * b)
-    } else {
-        println(-1)
-    }
+    println(max(0, a - b * 2))
 }

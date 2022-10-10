@@ -9,7 +9,7 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC147C()
+    solveABC147A()
 }
 
 fun solveABC147C() {
@@ -95,4 +95,13 @@ fun solveABC147C() {
     }
 
     println(res)
+}
+
+fun solveABC147A() {
+    val (a1, a2, a3) = readInts()
+    if (a1 + a2 + a3 >= 22) {
+        println("bust")
+    } else {
+        println("win")
+    }
 }

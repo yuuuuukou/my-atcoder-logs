@@ -8,29 +8,16 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC144A()
+    solveABC141A()
 }
 
-private fun solveABC144B() {
-    val n = readLine()!!.toInt()
-
-    var result = "No"
-    for (i in 1..9) {
-        for (j in 1..9) {
-            if (i * j == n) {
-                result = "Yes"
-            }
-        }
-    }
-
-    println(result)
-}
-
-fun solveABC144A() {
-    val (a, b) = readInts()
-    if (a <= 9 && b <= 9) {
-        println(a * b)
-    } else {
-        println(-1)
+fun solveABC141A() {
+    val s = readLn()
+    if (s == "Sunny") {
+        println("Cloudy")
+    } else if (s == "Cloudy") {
+        println("Rainy")
+    } else if (s == "Rainy") {
+        println("Sunny")
     }
 }
