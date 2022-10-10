@@ -1,3 +1,8 @@
+import java.math.BigDecimal
+import kotlin.math.absoluteValue
+import kotlin.math.max
+import kotlin.math.min
+
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
 private fun readInt() = readLn().toInt()
@@ -8,32 +13,24 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC138A()
+    solveABC135A()
 }
 
-fun solveABC138C() {
-    val n = readLine()!!.toInt()
-    val v = readLine()!!.split(" ").map { it.toBigDecimal() }.sorted()
+fun solveABC135A() {
+    val (a, b) = readInts()
+    val from = min(a, b)
+    val to = max(a, b)
 
-    var before = "0".toBigDecimal()
-    for (i in 0 until n) {
-        if (i == 0) {
-            before = v[i]
-            continue
+    var ans: Int? = null
+    for (k in from..to) {
+        if ((a - k).absoluteValue == (b - k).absoluteValue) {
+            ans = k
         }
-
-        before = (before + v[i]).divide("2.00000".toBigDecimal())
     }
-    println(before)
-}
 
-fun solveABC138A() {
-    val a = readInt()
-    val s = readLn()
-
-    if (a >= 3200) {
-        println(s)
+    if (ans == null) {
+        println("IMPOSSIBLE")
     } else {
-        println("red")
+        println(ans)
     }
 }

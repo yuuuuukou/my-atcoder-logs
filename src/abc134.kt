@@ -1,4 +1,5 @@
-import kotlin.math.max
+import java.math.BigDecimal
+import kotlin.math.min
 
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
@@ -10,23 +11,11 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC136A()
+    solveABC134A()
 }
 
-fun solveABC136B() {
-    val n = readLine()!!.toInt()
+fun solveABC134A() {
+    val r = readInt()
 
-    var cnt = 0
-    for (i in 1..n) {
-        if (i.toString().length % 2 != 0) {
-            cnt++
-        }
-    }
-
-    println(cnt)
-}
-
-fun solveABC136A() {
-    val (a, b, c) = readInts()
-    println(max(c - (a - b), 0))
+    println(3 * r * r)
 }

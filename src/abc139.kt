@@ -1,5 +1,14 @@
+private fun readLn() = readLine()!!
+private fun readStrings() = readLn().split(" ").toMutableList()
+private fun readInt() = readLn().toInt()
+private fun readInts() = readLn().split(" ").map { it.toInt() }.toMutableList()
+private fun readLong() = readLn().toLong()
+private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
+private fun readDouble() = readLn().toDouble()
+private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
+
 fun main(args: Array<String>) {
-    solveABC139B()
+    solveABC139A()
 }
 
 private fun solveABC139B() {
@@ -16,4 +25,15 @@ private fun solveABC139B() {
     }
 
     print(tapCnt)
+}
+
+fun solveABC139A() {
+    val s = readLn()
+    val t = readLn()
+
+    val day1 = if (s[0] == t[0]) 1 else 0
+    val day2 = if (s[1] == t[1]) 1 else 0
+    val day3 = if (s[2] == t[2]) 1 else 0
+
+    println(day1 + day2 + day3)
 }
