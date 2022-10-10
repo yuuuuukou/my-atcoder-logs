@@ -8,7 +8,7 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC128C()
+    solveABC128A()
 }
 
 fun solveABC128C() {
@@ -61,4 +61,7 @@ fun solveABC128C() {
     println(res)
 }
 
-
+fun solveABC128A() {
+    val (a, p) = readInts()
+    println((a * 3 + p) / 2)
+}
