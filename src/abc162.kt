@@ -1,6 +1,3 @@
-import kotlin.math.abs
-import kotlin.math.min
-
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
 private fun readInt() = readLn().toInt()
@@ -9,17 +6,14 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC161A()
+    solveABC162A()
 }
 
-fun solveABC161C() {
-    val (n, k) = readLine()!!.split(" ").map { it.toLong() }
-
-    val n2 = n % k
-    println(min(n2, abs(n2 - k)))
-}
-
-fun solveABC161A() {
-    val (x,y,z) = readInts()
-    println("$z $x $y")
+fun solveABC162A() {
+    val n = readLn()
+    if (n.contains("7")) {
+        println("Yes")
+    } else {
+        println("No")
+    }
 }

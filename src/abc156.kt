@@ -1,5 +1,12 @@
+private fun readLn() = readLine()!!
+private fun readStrings() = readLn().split(" ").toMutableList()
+private fun readInt() = readLn().toInt()
+private fun readInts() = readLn().split(" ").map { it.toInt() }.toMutableList()
+private fun readLong() = readLn().toLong()
+private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
+
 fun main(args: Array<String>) {
-    solveABC156B()
+    solveABC156A()
 }
 
 private fun solveABC156C() {
@@ -31,4 +38,13 @@ fun solveABC156B() {
         ansDigit++
     }
     println(ansDigit)
+}
+
+fun solveABC156A() {
+    val (n, r) = readInts()
+    if (n >= 10) {
+        println(r)
+    } else {
+        println(r + 100 * (10 - n))
+    }
 }
