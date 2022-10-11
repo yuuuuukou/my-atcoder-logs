@@ -1,5 +1,12 @@
+private fun readLn() = readLine()!!
+private fun readStrings() = readLn().split(" ").toMutableList()
+private fun readInt() = readLn().toInt()
+private fun readInts() = readLn().split(" ").map { it.toInt() }.toMutableList()
+private fun readLong() = readLn().toLong()
+private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
+
 fun main(args: Array<String>) {
-    solveABC175B()
+    solveABC175A()
 }
 
 fun solveABC175B() {
@@ -34,4 +41,37 @@ fun solveABC175B() {
     }
 
     println(cnt)
+}
+
+fun solveABC175A() {
+    val s = readLn()
+    if (s[0].toString() == "R") {
+        if (s[1].toString() == "R") {
+            if (s[2].toString() == "R") {
+                println(3)
+            } else {
+                println(2)
+            }
+        } else {
+            if (s[2].toString() == "R") {
+                println(1)
+            } else {
+                println(1)
+            }
+        }
+    } else {
+        if (s[1].toString() == "R") {
+            if (s[2].toString() == "R") {
+                println(2)
+            } else {
+                println(1)
+            }
+        } else {
+            if (s[2].toString() == "R") {
+                println(1)
+            } else {
+                println(0)
+            }
+        }
+    }
 }
