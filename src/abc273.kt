@@ -1,3 +1,5 @@
+import java.math.RoundingMode
+
 private fun readString() = readLine()!!
 private fun readStrings() = readString().split(" ").toMutableList()
 private fun readInt() = readString().toInt()
@@ -10,7 +12,18 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC273A()
+    solveABC273B()
+}
+
+fun solveABC273B() {
+    var (x, k) = readBigDecimals()
+
+    for (i in 0 until k.toInt()) {
+        val scale = -(i + 1)
+        x = x.setScale(scale, RoundingMode.HALF_UP)
+    }
+
+    println(x.toLong())
 }
 
 fun solveABC273A() {

@@ -1,5 +1,3 @@
-import kotlin.math.max
-
 private fun readString() = readLine()!!
 private fun readStrings() = readString().split(" ").toMutableList()
 private fun readInt() = readString().toInt()
@@ -12,7 +10,20 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC271A()
+    solveABC271B()
+}
+
+fun solveABC271B() {
+    val (n, q) = readInts()
+    val list = mutableListOf<MutableList<Int>>()
+    repeat(n) {
+        val tmp = readInts()
+        list.add(tmp)
+    }
+    repeat(q) {
+        val (s, t) = readInts()
+        println(list[s - 1][t])
+    }
 }
 
 fun solveABC271A() {
