@@ -1,12 +1,17 @@
 import kotlin.math.pow
 
 class _library {
-    private fun readLn() = readLine()!!
-    private fun readStrings() = readLn().split(" ").toMutableList()
-    private fun readInt() = readLn().toInt()
-    private fun readInts() = readLn().split(" ").map { it.toInt() }.toMutableList()
-    private fun readLong() = readLn().toLong()
-    private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
+    private val reader = System.`in`.bufferedReader()
+    private fun readString() = reader.readLine()
+    private fun readStrings() = readString().split(" ").toMutableList()
+    private fun readInt() = readString().toInt()
+    private fun readInts() = readString().split(" ").map { it.toInt() }.toMutableList()
+    private fun readLong() = readString().toLong()
+    private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
+    private fun readDouble() = readString().toDouble()
+    private fun readDoubles() = readString().split(" ").map { it.toDouble() }.toMutableList()
+    private fun readBigDecimal() = readString().toBigDecimal()
+    private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
     fun bitSerarch() {
         val n = 10 // readLine()!!.toInt()
@@ -36,6 +41,9 @@ class _library {
 
     /**
      * next_permutation
+     * 受け取ったリストの次の順列にarrayを更新する
+     * ex. [1, 2, 3, 4, 5] -> [1, 2, 3, 5, 4]
+     *
      * コードの参考: https://koboshi-kyopro.hatenablog.com/entry/2021/07/21/193611
      * コメントの参考: https://qiita.com/Nikkely/items/0ddca51b3c0e60afbaab
      */
@@ -52,7 +60,7 @@ class _library {
                         array[j] = tmp
 
                         // i+1以降の要素を昇順に並べ替える
-                        // i番目までは入れ替え済みor関係ないので、i+1番目からをtaleLastで取得してソート
+                        // i番目までは入れ替え済みor関係ないので、i+1番目からをtakeLastで取得してソート
                         val tmpArray = array.takeLast(array.size - (i + 1)).sorted()
                         tmpArray.forEachIndexed { index, e ->
                             // tmpArrayのindex == arrayのi+1+indexなので、ソート済みの値で上書きしていく
