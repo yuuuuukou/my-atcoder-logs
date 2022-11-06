@@ -15,79 +15,35 @@ fun main(args: Array<String>) {
 }
 
 fun solveABC276C() {
-    val n = readInt()
+    /*val n =*/ readInt()
     val p = readInts()
-//    val permutation = p.sorted().toMutableList()
-//
-//    var beforePermutation = mutableListOf<Int>()
-//    do {
-//        if (p == permutation) {
-//            println(beforePermutation.joinToString(" ", "", ""))
-//        }
-//
-//        // 事後処理
-//        beforePermutation = permutation.toMutableList()
-//    } while (nextPermutation(permutation))
-    println(prevPermutation(p)?.joinToString(" ", "", ""))
-}
 
-fun prevPermutation(nums: MutableList<Int>): List<Int>? {
-    var index = nums.size - 2
-    // find the first pair of two successive numbers nums[index] and nums[index + 1]
-    // from the right, which satisfy nums[index] > [index + 1]
-    while (index >= 0 && nums[index] <= nums[index + 1]) {
-        index--
-    }
-
-    // replace the number nums[index] with the number a[smaller] which is just smaller than itself
-    if (index >= 0) {
-        var smaller = nums.size - 1
-        while (smaller >= 0 && nums[index] <= nums[smaller]) {
-            smaller--
-        }
-        swap(nums, index, smaller)
-    }
-    // reverse the numbers following a[index] to get the next smallest lexicographic permutation
-    reverse(nums, index + 1)
-    return nums
-}
-
-private fun reverse(nums: MutableList<Int>, start: Int) {
-    var i = start
-    var j = nums.size - 1
-    while (i < j) {
-        swap(nums, i, j)
-        i++
-        j--
-    }
-}
-
-private fun swap(nums: MutableList<Int>, i: Int, j: Int) {
-    val temp = nums[i]
-    nums[i] = nums[j]
-    nums[j] = temp
+    prevPermutation(p)
+    println(p.joinToString(" ", "", ""))
 }
 
 /**
- * next_permutation
- * コードの参考: https://koboshi-kyopro.hatenablog.com/entry/2021/07/21/193611
- * コメントの参考: https://qiita.com/Nikkely/items/0ddca51b3c0e60afbaab
+ * prev_permutation
+ * 受け取ったリストの前の順列にarrayを更新する
+ * [1, 2, 3, 5, 4] -> [1, 2, 3, 4, 5]
+ *
+ * nextPermutationをベースに不等号、ソート順を修正
  */
-private fun nextPermutation(array: MutableList<Int>): Boolean {
-    // i: array[i] < array[i + 1]を満たすもののうち最大のものを探す。のでdownToでループ
+private fun prevPermutation(array: MutableList<Int>): Boolean {
+    // i: array[i] > array[i + 1]を満たすもののうちインデックス最大のものを探す。のでdownToでループ
     for (i in array.lastIndex - 1 downTo 0) {
-        if (array[i] < array[i + 1]) {
-            // j: 末尾から探索して初めて現れるarray[i]より大きい要素のインデックスを探す。
+        if (array[i] > array[i + 1]) {
+            // j: 末尾から探索して初めて現れるarray[i]より値が小さい要素のインデックスを探す。
             for (j in array.lastIndex downTo i + 1) {
-                if (array[j] > array[i]) {
+                if (array[j] < array[i]) {
                     // 見つけた。array[i]とarray[j]を入れ替える
                     val tmp = array[i]
                     array[i] = array[j]
                     array[j] = tmp
 
-                    // i+1以降の要素を昇順に並べ替える
+                    // i+1以降の要素を降順に並べ替える
                     // i番目までは入れ替え済みor関係ないので、i+1番目からをtakeLastで取得してソート
-                    val tmpArray = array.takeLast(array.size - (i + 1)).sorted()
+                    val tmpArray = array.takeLast(array.size - (i + 1)).sortedDescending()
                     tmpArray.forEachIndexed { index, e ->
                         // tmpArrayのindex == arrayのi+1+indexなので、ソート済みの値で上書きしていく
                         array[i + 1 + index] = e
