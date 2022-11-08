@@ -10,7 +10,57 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC260A()
+    solveABC260B()
+}
+
+fun solveABC260B() {
+    val (n, x, y, z) = readInts()
+    val a = readInts()
+    val b = readInts()
+
+    data class Student(val no: Int, val math: Int, val english: Int, val sum: Int = math + english)
+
+    val list = mutableListOf<Student>()
+    for (i in 0 until n) {
+        list.add(Student(i + 1, a[i], b[i]))
+    }
+
+    var res = mutableListOf<Int>()
+
+    // x人
+    list.sortWith(compareBy({ -it.math }, { it.no }))
+    for (i in 0 until x) {
+        res.add(list[i].no)
+    }
+
+    // y人
+    var cntY = 0
+    list.sortWith(compareBy({ -it.english }, { it.no }))
+    for (item in list) {
+        if (cntY == y) break
+
+        if (!res.contains(item.no)) {
+            res.add(item.no)
+            cntY++
+        }
+    }
+
+    // z人
+    var cntZ = 0
+    list.sortWith(compareBy({ -it.sum }, { it.no }))
+    for (item in list) {
+        if (cntZ == z) break
+
+        if (!res.contains(item.no)) {
+            res.add(item.no)
+            cntZ++
+        }
+    }
+
+    res.sort()
+    for (item in res) {
+        println(item)
+    }
 }
 
 fun solveABC260A() {

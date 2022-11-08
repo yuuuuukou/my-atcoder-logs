@@ -12,7 +12,36 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC261A()
+    solveABC261B()
+}
+
+fun solveABC261B() {
+    val n = readInt()
+    val matrix = mutableListOf<String>()
+    for (i in 0 until n) {
+        matrix.add(readString())
+    }
+    var res = "correct"
+    for (i in 0 until n) {
+        for (j in 0 until n) {
+            val ij = matrix[i][j].toString()
+            val ji = matrix[j][i].toString()
+            if (ij == ji) {
+                if (ij == "D" || i == j) {
+                    // ok
+                } else {
+                    res = "incorrect"
+                }
+            } else {
+                if (ij == "W" && ji == "L" || ij == "L" && ji == "W") {
+                    // ok
+                } else {
+                    res = "incorrect"
+                }
+            }
+        }
+    }
+    println(res)
 }
 
 fun solveABC261A() {
