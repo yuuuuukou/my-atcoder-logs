@@ -1,3 +1,6 @@
+import kotlin.math.absoluteValue
+import kotlin.math.sign
+
 private fun readString() = readLine()!!
 private fun readStrings() = readString().split(" ").toMutableList()
 private fun readInt() = readString().toInt()
@@ -10,7 +13,32 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC270A()
+    solveABC270B()
+}
+
+fun solveABC270B() {
+    val (x, y, z) = readInts()
+
+    if (x.sign == y.sign) {
+        val xGaChikai = if (x.sign == 1) x < y else x > y
+        if (xGaChikai) {
+            println(x.absoluteValue)
+        } else {
+            // 壁にひっかかるのでハンマー取りに行く
+            if (y.sign == z.sign) {
+                val yGaChikai = if (y.sign == 1) y < z else y > z
+                if (yGaChikai) {
+                    println("-1")
+                } else {
+                    println(x.absoluteValue)
+                }
+            } else {
+                println(x.absoluteValue + z.absoluteValue * 2)
+            }
+        }
+    } else {
+        println(x.absoluteValue)
+    }
 }
 
 fun solveABC270A() {
