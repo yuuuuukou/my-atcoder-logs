@@ -1,3 +1,7 @@
+import kotlin.math.PI
+import kotlin.math.cos
+import kotlin.math.sin
+
 private fun readString() = readLine()!!
 private fun readStrings() = readString().split(" ").toMutableList()
 private fun readInt() = readString().toInt()
@@ -10,7 +14,27 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC259A()
+    solveABC259B()
+}
+
+fun solveABC259B() {
+    val (a, b, d) = readInts()
+
+    // (x, y) を Θ回転させた点の座標(x', y')
+    // ref: https://mathwords.net/heimenkaiten
+    // ref: https://methodology.site/rotation-about-a-point/2/
+    //   x'       cosΘ -sinΘ     x
+    // (    ) = (            ) (   )
+    //   y'       sinΘ  cosΘ     y
+
+    // 度 -> Θ
+    // ref: https://www.peko-step.com/tool/tfrad.html
+    val theta = d.toDouble() * PI / 180
+
+    val xDash = cos(theta) * a - sin(theta) * b
+    val yDash = sin(theta) * a + cos(theta) * b
+
+    println("$xDash $yDash")
 }
 
 fun solveABC259A() {
