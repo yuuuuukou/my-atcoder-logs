@@ -10,7 +10,38 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC257A()
+    solveABC257B()
+}
+
+fun solveABC257B() {
+    val (n, k, q) = readInts()
+    val a = readInts()
+    val l = readInts()
+
+    for (li in l) {
+        // li番目のコマを対象にする
+        var target = a[li - 1]
+
+        if (li == k) {
+            // 最後のコマは終端を考慮
+            if (target == n) {
+                // 最後のマスに居ればそのまま
+                continue
+            }
+        } else {
+            // 最後以外のコマは次のコマの位置を考慮
+            val next = a[li]
+            if (target + 1 == next) {
+                // 移動できないのでそのまま
+                continue
+            }
+        }
+
+        // ここまで到達する = 次に進めてOK
+        a[li - 1] += 1
+    }
+
+    println(a.joinToString(" ", "", ""))
 }
 
 fun solveABC257A() {
