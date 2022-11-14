@@ -10,7 +10,28 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC252A()
+    solveABC252B()
+}
+
+fun solveABC252B() {
+    val (n, k) = readInts()
+    val a = readInts()
+    val aMax = a.max()
+    val b = readInts()
+
+    val deliciousList = mutableListOf<Int>()
+    for ((i, ai) in a.withIndex()) {
+        if (ai == aMax) {
+            deliciousList.add(i + 1)
+        }
+    }
+    var res = "No"
+    for (item in deliciousList) {
+        if (b.contains(item)) {
+            res = "Yes"
+        }
+    }
+    println(res)
 }
 
 fun solveABC252A() {
