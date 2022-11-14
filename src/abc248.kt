@@ -10,7 +10,19 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC248A()
+    solveABC248B()
+}
+
+fun solveABC248B() {
+    val (a, b, k) = readLongs()
+
+    var slimes = a
+    var cnt = 0
+    while (slimes < b) {
+        cnt++
+        slimes *= k
+    }
+    println(cnt)
 }
 
 fun solveABC248A() {
@@ -27,7 +39,7 @@ fun solveABC248A() {
     alertIfNotContain(s, "9")
 }
 
-private fun alertIfNotContain(s:String, num:String) {
+private fun alertIfNotContain(s: String, num: String) {
     if (!s.contains(num)) {
         println(num)
     }

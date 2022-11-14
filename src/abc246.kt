@@ -1,3 +1,5 @@
+import kotlin.math.sqrt
+
 private fun readString() = readLine()!!
 private fun readStrings() = readString().split(" ").toMutableList()
 private fun readInt() = readString().toInt()
@@ -10,7 +12,13 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC246A()
+    solveABC246B()
+}
+
+fun solveABC246B() {
+    val (a, b) = readDoubles()
+    val c = sqrt(a * a + b * b)
+    println("${a/c} ${b/c}")
 }
 
 fun solveABC246A() {
