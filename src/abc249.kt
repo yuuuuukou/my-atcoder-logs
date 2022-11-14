@@ -10,7 +10,33 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC249A()
+    solveABC249B()
+}
+
+fun solveABC249B() {
+    val s = readString()
+
+    var containUpper = false
+    var containLower = false
+    var isDuplicate = false
+    val exitsMap = mutableMapOf<String, Boolean>()
+    for (si in s) {
+        if (si.toString() in "A".."Z") {
+            containUpper = true
+        }
+        if (si.toString() in "a".."z") {
+            containLower = true
+        }
+        if (exitsMap[si.toString()] == true) {
+            isDuplicate = true
+        }
+        exitsMap[si.toString()] = true
+    }
+    if (containUpper && containLower && !isDuplicate) {
+        println("Yes")
+    } else {
+        println("No")
+    }
 }
 
 fun solveABC249A() {
