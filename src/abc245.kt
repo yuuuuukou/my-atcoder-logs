@@ -10,11 +10,23 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC245A()
+    solveABC245B()
+}
+
+fun solveABC245B() {
+    val n = readInt()
+    val a = readInts()
+
+    for (i in 0..2000) {
+        if (i !in a) {
+            println(i)
+            return
+        }
+    }
 }
 
 fun solveABC245A() {
-    val (a,b,c,d) = readInts()
+    val (a, b, c, d) = readInts()
     if (a < c) {
         println("Takahashi")
     } else if (a == c) {
