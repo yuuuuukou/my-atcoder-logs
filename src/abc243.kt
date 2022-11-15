@@ -10,7 +10,25 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC243A()
+    solveABC243B()
+}
+
+fun solveABC243B() {
+    val n = readInt()
+    val a = readInts()
+    val b = readInts()
+
+    var cnt1 = 0
+    var cnt2 = 0
+    for (i in 0 until n) {
+        if (a[i] == b[i]) {
+            cnt1++
+        } else if (a[i] in b) {
+            cnt2++
+        }
+    }
+
+    println("$cnt1 $cnt2")
 }
 
 fun solveABC243A() {
