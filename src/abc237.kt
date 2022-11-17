@@ -1,6 +1,7 @@
 import kotlin.math.pow
 
-private fun readString() = readLine()!!
+private val reader = System.`in`.bufferedReader()
+private fun readString() = reader.readLine()
 private fun readStrings() = readString().split(" ").toMutableList()
 private fun readInt() = readString().toInt()
 private fun readInts() = readString().split(" ").map { it.toInt() }.toMutableList()
@@ -12,7 +13,29 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC237A()
+    solveABC237B()
+}
+
+fun solveABC237B() {
+    val (h, w) = readInts()
+    val a = mutableListOf<MutableList<Int>>()
+    for (row in 0 until h) {
+        val ai = readInts()
+        a.add(ai)
+    }
+
+    // var res = StringBuilder()
+    for (i in 0 until w) {
+        for (j in 0 until h) {
+            // res.append("${a[j][i]} ")
+            print("${a[j][i]} ")
+        }
+        // res.removeSuffix(" ")
+        // res.append("\n")
+        println()
+    }
+
+    // println(res)
 }
 
 fun solveABC237A() {
