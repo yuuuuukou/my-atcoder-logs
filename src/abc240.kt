@@ -1,5 +1,4 @@
 import kotlin.math.absoluteValue
-import kotlin.math.sqrt
 
 private fun readString() = readLine()!!
 private fun readStrings() = readString().split(" ").toMutableList()
@@ -13,7 +12,12 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC240A()
+    solveABC240B()
+}
+
+fun solveABC240B() {
+    /*val n = */readInt()
+    println(readInts().toSet().count())
 }
 
 fun solveABC240A() {

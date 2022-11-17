@@ -1,3 +1,4 @@
+import java.math.RoundingMode
 import kotlin.math.sqrt
 
 private fun readString() = readLine()!!
@@ -12,7 +13,12 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC239A()
+    solveABC239B()
+}
+
+fun solveABC239B() {
+    val x = readBigDecimal()
+    println(x.divide(10.toBigDecimal(), RoundingMode.FLOOR))
 }
 
 fun solveABC239A() {
