@@ -10,7 +10,17 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC232A()
+    solveABC232B()
+}
+
+fun solveABC232B() {
+    val n = readInt()
+    val map = mutableMapOf<String, Int>()
+    repeat(n) {
+        var tmp = readString()
+        map[tmp] = (map[tmp] ?: 0) + 1
+    }
+    println(map.maxBy { it.value }?.key)
 }
 
 fun solveABC232A() {

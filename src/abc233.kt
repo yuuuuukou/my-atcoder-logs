@@ -10,7 +10,16 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC233A()
+    solveABC233B()
+}
+
+fun solveABC233B() {
+    val (l, r) = readInts()
+    val s = readString()
+    val left = s.substring(0 until l - 1)
+    val mid = s.substring(l - 1 until r).reversed()
+    val right = s.substring(r until s.length)
+    println("$left$mid$right")
 }
 
 fun solveABC233A() {
