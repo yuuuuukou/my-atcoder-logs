@@ -1,3 +1,5 @@
+import kotlin.math.max
+
 private fun readString() = readLine()!!
 private fun readStrings() = readString().split(" ").toMutableList()
 private fun readInt() = readString().toInt()
@@ -10,7 +12,24 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC229A()
+    solveABC229B()
+}
+
+fun solveABC229B() {
+    val (a, b) = readStrings()
+
+    var isHard = false
+    for (i in 0 until max(a.length, b.length)) {
+        if (i < a.length && i < b.length) {
+            val ai = a[a.length - 1 - i].toString().toInt()
+            val bi = b[b.length - 1 - i].toString().toInt()
+            if (ai + bi >= 10) {
+                isHard = true
+            }
+        }
+    }
+
+    println(if (isHard) "Hard" else "Easy")
 }
 
 fun solveABC229A() {

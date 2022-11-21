@@ -10,7 +10,39 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC230A()
+    solveABC230B()
+}
+
+fun solveABC230B() {
+    val s = readString()
+
+    var pattern1 = true
+    var pattern2 = true
+    var pattern3 = true
+    for ((index, si) in s.withIndex()) {
+        if (index in arrayOf(0, 3, 6, 9) && si.toString() != "o") {
+            pattern1 = false
+        }
+        if (index in arrayOf(1, 2, 4, 5, 7, 8) && si.toString() != "x") {
+            pattern1 = false
+        }
+
+        if (index in arrayOf(2, 5, 8) && si.toString() != "o") {
+            pattern2 = false
+        }
+        if (index in arrayOf(0, 1, 3, 4, 6, 7, 9) && si.toString() != "x") {
+            pattern2 = false
+        }
+
+        if (index in arrayOf(1, 4, 7) && si.toString() != "o") {
+            pattern3 = false
+        }
+        if (index in arrayOf(0, 2, 3, 5, 6, 8, 9) && si.toString() != "x") {
+            pattern3 = false
+        }
+    }
+
+    println(if (pattern1 || pattern2 || pattern3) "Yes" else "No")
 }
 
 fun solveABC230A() {
