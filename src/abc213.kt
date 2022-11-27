@@ -6,7 +6,20 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC213A()
+    solveABC213B()
+}
+
+fun solveABC213B() {
+    val n = readInt()
+    val a = readInts()
+    val aSortedDesc = a.sortedDescending()
+
+    for ((i, ai) in a.withIndex()) {
+        if (aSortedDesc[1] == ai) {
+            println(i + 1)
+            return
+        }
+    }
 }
 
 fun solveABC213A() {

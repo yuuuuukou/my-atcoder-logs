@@ -6,7 +6,21 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC206A()
+    solveABC206B()
+}
+
+fun solveABC206B() {
+    val n = readInt()
+
+    var day = 0
+    var current = 0
+    var amount = 0
+    do {
+        day++
+        amount += (++current)
+    } while (amount < n)
+
+    println(day)
 }
 
 fun solveABC206A() {

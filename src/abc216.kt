@@ -8,7 +8,33 @@ private fun readDouble() = readString().toDouble()
 private fun readDoubles() = readString().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC216A()
+    solveABC216B()
+}
+
+fun solveABC216B() {
+    val n = readInt()
+
+    data class Person(val firstName: String, val lastName: String) {
+        fun isSameName(person: Person): Boolean {
+            return (person.firstName == this.firstName
+                    && person.lastName == this.lastName)
+        }
+    }
+    val persons = mutableListOf<Person>()
+
+    var res = "No"
+    repeat(n) {
+        val (si, ti) = readStrings()
+        val currentPerson = Person(si, ti)
+        for (person in persons) {
+            if (person.isSameName(currentPerson)) {
+                res = "Yes"
+            }
+        }
+        persons.add(currentPerson)
+    }
+
+    println(res)
 }
 
 fun solveABC216A() {

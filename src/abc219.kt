@@ -6,7 +6,25 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC219A()
+    solveABC219B()
+}
+
+fun solveABC219B() {
+    val s1 = readString()
+    val s2 = readString()
+    val s3 = readString()
+    val t = readString()
+
+    val res = StringBuilder()
+    for (ti in t) {
+        when (ti.toString()) {
+            "1" -> res.append(s1)
+            "2" -> res.append(s2)
+            "3" -> res.append(s3)
+        }
+    }
+
+    println(res)
 }
 
 fun solveABC219A() {
