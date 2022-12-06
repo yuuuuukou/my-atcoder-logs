@@ -1,4 +1,5 @@
-private fun readString() = readLine()!!
+private val reader = System.`in`.bufferedReader()
+private fun readString() = reader.readLine()
 private fun readStrings() = readString().split(" ").toMutableList()
 private fun readInt() = readString().toInt()
 private fun readInts() = readString().split(" ").map { it.toInt() }.toMutableList()
@@ -10,40 +11,50 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC232B()
+    solveABC280C()
 }
 
-fun solveABC232B() {
+fun solveABC280C() {
     val s = readString()
     val t = readString()
-
-    for (k in 0..27) {
-        var flag = true
-        for (i in s.indices) {
-            val tmp =
-                if ((s[i].toInt() + k).toChar() > 'z') {
-                    (s[i].toInt() + k - 26).toChar()
-                } else {
-                    (s[i].toInt() + k).toChar()
-                }
-            if (tmp == t[i]) {
-                // ok
-            } else {
-                flag = false
-            }
+    for (i in t.indices) {
+        if (i == t.lastIndex) {
+            println(i + 1)
+            return
         }
 
-        if (flag) {
-            println("Yes")
+        if (s[i] == t[i]) {
+            // ok
+        } else {
+            println(i + 1)
             return
         }
     }
-
-    println("No")
 }
 
+fun solveABC280B() {
+    val n = readLong()
+    val s = readLongs()
 
-fun solveABC232A() {
-    val s = readString()
-    println(s[0].toString().toInt() * s[2].toString().toInt())
+    var pre = 0L
+    for (si in s) {
+        print("${si - pre} ")
+        pre = si
+    }
+}
+
+fun solveABC280A() {
+    val (h, w) = readInts()
+
+    var cnt = 0
+    repeat(h) {
+        val si = readString()
+        for (sij in si) {
+            if (sij.toString() == "#") {
+                cnt++
+            }
+        }
+    }
+
+    println(cnt)
 }
