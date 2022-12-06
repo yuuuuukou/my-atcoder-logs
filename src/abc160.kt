@@ -6,7 +6,7 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC160A()
+    solveABC160B()
 }
 
 fun solveABC160C() {
@@ -35,6 +35,23 @@ fun solveABC160C() {
     // 一番コストかかる経路を端折る
     list.removeAt(list.indexOf(max))
     println(list.sum())
+}
+
+fun solveABC160B() {
+    var x = readInt()
+
+    var joy = 0
+    while (x >= 500) {
+        x -= 500
+        joy += 1000
+    }
+
+    while (x >= 5) {
+        x -= 5
+        joy += 5
+    }
+
+    println(joy)
 }
 
 fun solveABC160A() {

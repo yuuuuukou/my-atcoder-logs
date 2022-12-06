@@ -6,7 +6,25 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC164A()
+    solveABC164B()
+}
+
+fun solveABC164B() {
+    var (a, b, c, d) = readInts()
+
+    while (a > 0 || c > 0) {
+        c -= b
+        if (c <= 0) {
+            println("Yes")
+            return
+        }
+
+        a -= d
+        if (a <= 0) {
+            println("No")
+            return
+        }
+    }
 }
 
 fun solveABC164A() {

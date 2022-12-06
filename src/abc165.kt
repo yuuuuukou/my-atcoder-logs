@@ -6,7 +6,22 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC165A()
+    solveABC165B()
+}
+
+fun solveABC165B() {
+    val x = readLong()
+
+    var year = 0
+    var account = 100L
+
+    while (account < x) {
+        year++
+        // account = (account * 1.01).toInt()
+        account += account / 100
+    }
+
+    println(year)
 }
 
 fun solveABC165A() {

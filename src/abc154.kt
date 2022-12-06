@@ -1,18 +1,24 @@
-private fun readLn() = readLine()!!
-private fun readStrings() = readLn().split(" ").toMutableList()
-private fun readInt() = readLn().toInt()
-private fun readInts() = readLn().split(" ").map { it.toInt() }.toMutableList()
-private fun readLong() = readLn().toLong()
-private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
+private fun readString() = readLine()!!
+private fun readStrings() = readString().split(" ").toMutableList()
+private fun readInt() = readString().toInt()
+private fun readInts() = readString().split(" ").map { it.toInt() }.toMutableList()
+private fun readLong() = readString().toLong()
+private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC154A()
+    solveABC154B()
+}
+
+fun solveABC154B() {
+    val s = readString()
+
+    println("".padStart(s.length, 'x'))
 }
 
 fun solveABC154A() {
     val (s, t) = readStrings()
     val (a, b) = readInts()
-    val u = readLn()
+    val u = readString()
 
     val map = mutableMapOf<String, Int>()
     map[s] = a

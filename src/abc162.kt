@@ -6,7 +6,22 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC162A()
+    solveABC162B()
+}
+
+fun solveABC162B() {
+    val n = readLong()
+
+    var res = 0L
+    for (i in 1..n) {
+        if (i % 3 == 0L || i % 5 == 0L) {
+            // Fizz || Buzz
+        } else {
+            res += i
+        }
+    }
+
+    println(res)
 }
 
 fun solveABC162A() {

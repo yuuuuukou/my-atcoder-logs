@@ -8,7 +8,20 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC188A()
+    solveABC188B()
+}
+
+fun solveABC188B() {
+    val n = readInt()
+    val a = readInts()
+    val b = readInts()
+
+    var res = 0
+    for (i in 0 until n) {
+        res += (a[i] * b[i])
+    }
+
+    println(if (res == 0) "Yes" else "No")
 }
 
 fun solveABC188A() {
