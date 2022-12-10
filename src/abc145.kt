@@ -9,7 +9,7 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC145A()
+    solveABC145B()
 }
 
 fun solveABC145C() {
@@ -71,6 +71,21 @@ private fun nextPermutation(array: MutableList<Int>): Boolean {
         }
     }
     return false
+}
+
+fun solveABC145B() {
+    val n = readInt()
+    val s = readLn()
+
+    if (s.length % 2 == 0) {
+        if (s.substring(0 until s.length / 2) == s.substring(s.length / 2 until s.length)) {
+            println("Yes")
+        } else {
+            println("No")
+        }
+    } else {
+        println("No")
+    }
 }
 
 fun solveABC145A() {

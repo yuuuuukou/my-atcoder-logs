@@ -1,15 +1,15 @@
 import kotlin.math.max
 import kotlin.math.pow
 
-private fun readLn() = readLine()!!
-private fun readStrings() = readLn().split(" ").toMutableList()
-private fun readInt() = readLn().toInt()
-private fun readInts() = readLn().split(" ").map { it.toInt() }.toMutableList()
-private fun readLong() = readLn().toLong()
-private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
+private fun readString() = readLine()!!
+private fun readStrings() = readString().split(" ").toMutableList()
+private fun readInt() = readString().toInt()
+private fun readInts() = readString().split(" ").map { it.toInt() }.toMutableList()
+private fun readLong() = readString().toLong()
+private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC147A()
+    solveABC147B()
 }
 
 fun solveABC147C() {
@@ -95,6 +95,24 @@ fun solveABC147C() {
     }
 
     println(res)
+}
+
+fun solveABC147B() {
+    val s = readString()
+    val sReversed = s.reversed()
+
+    var res = 0.0
+    for (i in s.indices) {
+        if (s[i] != sReversed[i]) {
+            if (s.length % 2 != 0 && i == s.length / 2 + 1) {
+                res++
+            } else {
+                res += 0.5
+            }
+        }
+    }
+
+    println(res.toInt())
 }
 
 fun solveABC147A() {
