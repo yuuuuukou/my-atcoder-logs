@@ -8,7 +8,34 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC117A()
+    solveABC117B()
+}
+
+fun solveABC117B() {
+    val n = readInt()
+    val l = readInts()
+
+    var lMax = l.max() ?: 0
+    var lMaxIndex = 0
+    for ((i, li) in l.withIndex()) {
+        if (li == lMax) {
+            lMaxIndex = i
+            break
+        }
+    }
+
+    var otherSum = 0
+    for (i in 0 until n) {
+        if (i != lMaxIndex) {
+            otherSum += l[i]
+        }
+    }
+
+    if (lMax < otherSum) {
+        println("Yes")
+    } else {
+        println("No")
+    }
 }
 
 fun solveABC117A() {

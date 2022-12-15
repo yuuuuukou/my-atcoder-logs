@@ -1,6 +1,3 @@
-import java.math.BigDecimal
-import kotlin.math.min
-
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
 private fun readInt() = readLn().toInt()
@@ -11,7 +8,20 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC134A()
+    solveABC134B()
+}
+
+fun solveABC134B() {
+    val (n, d) = readInts()
+
+    // 一人が監視可能な数
+    val num = d * 2 + 1
+
+    if (n % num == 0) {
+        println(n / num)
+    } else {
+        println(n / num + 1)
+    }
 }
 
 fun solveABC134A() {

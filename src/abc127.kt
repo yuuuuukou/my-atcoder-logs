@@ -8,7 +8,17 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC127A()
+    solveABC127B()
+}
+
+fun solveABC127B() {
+    val (r, d, x2000) = readInts()
+
+    var x = x2000
+    for (i in 1..10) {
+        x = r * x - d
+        println(x)
+    }
 }
 
 fun solveABC127A() {

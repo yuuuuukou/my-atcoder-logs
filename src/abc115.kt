@@ -6,7 +6,22 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC115A()
+    solveABC115B()
+}
+
+fun solveABC115B() {
+    val n = readInt()
+
+    var max = 0
+    var sum = 0
+    repeat(n) {
+        val pi = readInt()
+        max = kotlin.math.max(max, pi)
+        sum += pi
+    }
+    sum -= (max / 2)
+
+    println(sum)
 }
 
 fun solveABC115A() {

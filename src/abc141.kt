@@ -8,7 +8,26 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC141A()
+    solveABC141B()
+}
+
+fun solveABC141B() {
+    val s = readLn()
+
+    var res = true
+    for ((i,si) in s.withIndex()) {
+        if (i%2==0) {
+            if (si !in arrayOf('R', 'U', 'D')) {
+                res = false
+            }
+        } else {
+            if (si !in arrayOf('L', 'U', 'D')) {
+                res = false
+            }
+        }
+    }
+
+    println(if (res) "Yes" else "No")
 }
 
 fun solveABC141A() {

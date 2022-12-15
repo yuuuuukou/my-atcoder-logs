@@ -8,7 +8,7 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC132A()
+    solveABC132B()
 }
 
 fun solveABC132C() {
@@ -19,6 +19,21 @@ fun solveABC132C() {
     val dy = dList[dList.size / 2]
 
     println(dy - dx)
+}
+
+fun solveABC132B() {
+    val n = readInt()
+    val p = readInts()
+
+    var cnt = 0
+    for (i in 1..n - 2) {
+        val p2 = listOf(p[i - 1], p[i], p[i + 1]).sorted()
+        if (p[i] == p2[1]) {
+            cnt++
+        }
+    }
+
+    println(cnt)
 }
 
 fun solveABC132A() {
