@@ -6,7 +6,35 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC224A()
+    solveABC224B()
+}
+
+fun solveABC224B() {
+    val (h, w) = readInts()
+    val matrix = mutableListOf<MutableList<Long>>()
+    repeat(h) {
+        val ai = readLongs()
+        matrix.add(ai)
+    }
+
+    for (i1 in 0 until h) {
+        for (i2 in 0 until h) {
+            for (j1 in 0 until w) {
+                for (j2 in 0 until w) {
+                    if (i1 < i2 || j1 < j2) continue
+
+                    if (matrix[i1][j1] + matrix[i2][j2] <= matrix[i2][j1] + matrix[i1][j2]) {
+                        // ok
+                    } else {
+                        println("No")
+                        return
+                    }
+                }
+            }
+        }
+    }
+
+    println("Yes")
 }
 
 fun solveABC224A() {
