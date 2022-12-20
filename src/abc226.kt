@@ -13,7 +13,20 @@ private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() 
 
 
 fun main(args: Array<String>) {
-    solveABC226A()
+    solveABC226B()
+}
+
+fun solveABC226B() {
+    val n = readInt()
+
+    var set = mutableSetOf<String>()
+    repeat(n) {
+        val li = readInts()
+        li.removeAt(0)
+        set.add(li.joinToString(", "))
+    }
+
+    println(set.count())
 }
 
 fun solveABC226A() {
