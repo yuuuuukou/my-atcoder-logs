@@ -8,7 +8,7 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC149A()
+    solveABC149B()
 }
 
 fun solveABC149C() {
@@ -49,6 +49,18 @@ private fun makePrimes(n: Int): MutableList<Int> {
     }
 
     return res
+}
+
+fun solveABC149B() {
+    val (a, b, k) = readLongs()
+
+    if (k >= a + b) {
+        println("0 0")
+    } else if (k >= a) {
+        println("0 ${b - (k - a)}")
+    } else {
+        println("${a - k} $b")
+    }
 }
 
 fun solveABC149A() {

@@ -6,7 +6,23 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC182A()
+    solveABC182B()
+}
+
+fun solveABC182B() {
+    val n = readInt()
+    val a = readInts()
+
+    val array = MutableList(1001) { 0 }
+    for (i in 2..1000) {
+        for (ai in a) {
+            if (ai % i == 0) {
+                array[i]++
+            }
+        }
+    }
+
+    println(array.indexOf(array.max()))
 }
 
 fun solveABC182A() {

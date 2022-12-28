@@ -8,7 +8,7 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC138A()
+    solveABC138B()
 }
 
 fun solveABC138C() {
@@ -25,6 +25,18 @@ fun solveABC138C() {
         before = (before + v[i]).divide("2.00000".toBigDecimal())
     }
     println(before)
+}
+
+fun solveABC138B() {
+    val n = readInt()
+    val a = readDoubles()
+
+    var sum = 0.0
+    for (ai in a) {
+        sum += (1.0 / ai)
+    }
+
+    println(1.0/sum)
 }
 
 fun solveABC138A() {
