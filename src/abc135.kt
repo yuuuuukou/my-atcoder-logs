@@ -1,4 +1,3 @@
-import java.math.BigDecimal
 import kotlin.math.absoluteValue
 import kotlin.math.max
 import kotlin.math.min
@@ -13,7 +12,28 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC135A()
+    solveABC135B()
+}
+
+fun solveABC135B() {
+    val n = readInt()
+    val p = readInts()
+    val p2 = p.sorted()
+
+    for (i in 0 until n) {
+        for (j in 0 until n) {
+            val p3 = p.toMutableList()
+            val tmp = p3[i]
+            p3[i] = p3[j]
+            p3[j] = tmp
+            if (p2 == p3) {
+                println("YES")
+                return
+            }
+        }
+    }
+
+    println("NO")
 }
 
 fun solveABC135A() {

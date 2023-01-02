@@ -10,7 +10,23 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC124A()
+    solveABC124B()
+}
+
+fun solveABC124B() {
+    val n = readInt()
+    val h = readInts()
+
+    var max = 0
+    var cnt = 0
+    for (i in 0 until n) {
+        if (h[i] >= max) {
+            cnt++
+        }
+        max = max(max, h[i])
+    }
+
+    println(cnt)
 }
 
 fun solveABC124A() {

@@ -8,7 +8,25 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC130A()
+    solveABC130B()
+}
+
+fun solveABC130B() {
+    val (n, x) = readInts()
+    val l = readInts()
+
+    var current = 0
+    var cnt = 1
+    for (li in l) {
+        val di = current + li
+        if (di <= x) {
+            cnt++
+        }
+
+        current = di
+    }
+
+    println(cnt)
 }
 
 fun solveABC130A() {

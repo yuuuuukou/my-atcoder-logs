@@ -8,7 +8,23 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC119A()
+    solveABC119B()
+}
+
+fun solveABC119B() {
+    val n = readInt()
+
+    var res = 0.0
+    repeat(n) {
+        val (xiStr, yi) = readStrings()
+        val xi = xiStr.toDouble()
+        when (yi) {
+            "JPY" -> res += xi
+            "BTC" -> res += xi * 380000.0
+        }
+    }
+
+    println(res)
 }
 
 fun solveABC119A() {

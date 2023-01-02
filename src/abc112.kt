@@ -1,5 +1,6 @@
 import kotlin.math.abs
 import kotlin.math.max
+import kotlin.math.min
 
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
@@ -9,7 +10,7 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC112A()
+    solveABC112B()
 }
 
 fun solveABC112C() {
@@ -56,6 +57,24 @@ fun solveABC112C() {
                 }
             }
         }
+    }
+}
+
+fun solveABC112B() {
+    val (n, t) = readInts()
+
+    var cost = Int.MAX_VALUE
+    repeat(n) {
+        val (ci, ti) = readInts()
+        if (ti <= t) {
+            cost = min(cost, ci)
+        }
+    }
+
+    if (cost == Int.MAX_VALUE) {
+        println("TLE")
+    } else {
+        println(cost)
     }
 }
 

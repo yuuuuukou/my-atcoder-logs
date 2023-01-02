@@ -8,7 +8,23 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC118A()
+    solveABC118B()
+}
+
+fun solveABC118B() {
+    val (n, m) = readInts()
+
+    val tmp = readInts()
+    tmp.removeAt(0)
+    var set = tmp.toMutableSet()
+    repeat(n - 1) {
+        val tmpI = readInts()
+        tmpI.removeAt(0)
+        val ki = tmpI.toMutableSet()
+        set = (set intersect ki).toMutableSet()
+    }
+
+    println(set.count())
 }
 
 fun solveABC118A() {
