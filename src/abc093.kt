@@ -6,7 +6,16 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC093A()
+    solveABC093B()
+}
+
+fun solveABC093B() {
+    val (a, b, k) = readInts()
+    for (i in a..b) {
+        if (i in a until a + k || i in b - k + 1..b) {
+            println(i)
+        }
+    }
 }
 
 fun solveABC093A() {

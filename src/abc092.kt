@@ -8,7 +8,26 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC092A()
+    solveABC092B()
+}
+
+fun solveABC092B() {
+    val n = readInt()
+    val (d, x) = readInts()
+
+    var cnt = 0
+    repeat(n) {
+        val ai = readInt()
+
+        var next = 1
+        while (next <= d) {
+            cnt++
+
+            next += ai
+        }
+    }
+
+    println(cnt + x)
 }
 
 fun solveABC092A() {
