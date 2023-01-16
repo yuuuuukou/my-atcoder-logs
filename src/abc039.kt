@@ -1,6 +1,3 @@
-import kotlin.math.max
-import kotlin.math.min
-
 private val reader = System.`in`.bufferedReader()
 private fun readString() = reader.readLine()
 private fun readStrings() = readString().split(" ").toMutableList()
@@ -14,7 +11,18 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC039A()
+    solveABC039B()
+}
+
+fun solveABC039B() {
+    val x = readInt()
+
+    for (n in 1..1000000000) {
+        if (x == n * n * n * n) {
+            println(n)
+            return
+        }
+    }
 }
 
 fun solveABC039A() {

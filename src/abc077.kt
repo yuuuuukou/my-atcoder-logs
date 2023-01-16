@@ -1,5 +1,3 @@
-import kotlin.math.absoluteValue
-
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
 private fun readInt() = readLn().toInt()
@@ -8,7 +6,20 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC077A()
+    solveABC077B()
+}
+
+fun solveABC077B() {
+    val n = readInt()
+
+    var res = 0
+    var i = 0
+    while (i * i <= n) {
+        res = i * i
+        i++
+    }
+
+    println(res)
 }
 
 fun solveABC077A() {

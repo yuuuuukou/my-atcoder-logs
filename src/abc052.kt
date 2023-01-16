@@ -1,3 +1,5 @@
+import kotlin.math.max
+
 private val reader = System.`in`.bufferedReader()
 private fun readString() = reader.readLine()
 private fun readStrings() = readString().split(" ").toMutableList()
@@ -11,22 +13,27 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC029B()
+    solveABC052B()
 }
 
-fun solveABC029B() {
-    var cnt = 0
-    repeat(12) {
-        val si = readString()
-        if (si.contains("r")) {
-            cnt++
+fun solveABC052B() {
+    val n = readInt()
+    val s = readString()
+
+    var max = 0
+    var x = 0
+    for (si in s) {
+        when (si) {
+            'I' -> x++
+            'D' -> x--
         }
+        max = max(max, x)
     }
-    println(cnt)
+
+    println(max)
 }
 
-fun solveABC029A() {
-    val w = readString()
-
-    println("${w}s")
+fun solveABC052A() {
+    val (a, b, c, d) = readInts()
+    println(max(a * b, c * d))
 }

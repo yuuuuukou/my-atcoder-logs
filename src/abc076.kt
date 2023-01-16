@@ -1,4 +1,5 @@
 import kotlin.math.absoluteValue
+import kotlin.math.min
 
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
@@ -8,7 +9,21 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC076A()
+    solveABC076B()
+}
+
+fun solveABC076B() {
+    val n = readInt()
+    val k = readInt()
+
+    var res = 1
+    repeat(n) {
+        val tmp1 = res * 2
+        val tmp2 = res + k
+        res = min(tmp1, tmp2)
+    }
+
+    println(res)
 }
 
 fun solveABC076A() {
