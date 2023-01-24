@@ -11,7 +11,25 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC033A()
+    solveABC033B()
+}
+
+fun solveABC033B() {
+    val n = readInt()
+
+    var sum = 0
+    var maxNum = 0
+    var maxCityName = ""
+    repeat(n) {
+        val (si, pi) = readStrings()
+        if (maxNum < pi.toInt()) {
+            maxNum = pi.toInt()
+            maxCityName = si
+        }
+        sum += pi.toInt()
+    }
+
+    println(if (sum / 2 < maxNum) maxCityName else "atcoder")
 }
 
 fun solveABC033A() {
