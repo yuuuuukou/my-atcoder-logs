@@ -1,7 +1,19 @@
 import kotlin.math.pow
 
+private val reader = System.`in`.bufferedReader()
+private fun readString() = reader.readLine()
+private fun readStrings() = readString().split(" ").toMutableList()
+private fun readInt() = readString().toInt()
+private fun readInts() = readString().split(" ").map { it.toInt() }.toMutableList()
+private fun readLong() = readString().toLong()
+private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
+private fun readDouble() = readString().toDouble()
+private fun readDoubles() = readString().split(" ").map { it.toDouble() }.toMutableList()
+private fun readBigDecimal() = readString().toBigDecimal()
+private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
+
 fun main(args: Array<String>) {
-    solveABC049C()
+    solveABC049B()
 }
 
 fun solveABC049C() {
@@ -28,5 +40,26 @@ fun solveABC049C() {
         println("YES")
     } else {
         println("NO")
+    }
+}
+
+fun solveABC049B() {
+    val (h, w) = readInts()
+    repeat(h) {
+        val ci = readString()
+        println(ci)
+        println(ci)
+    }
+}
+
+fun solveABC049A() {
+    val c = readLine()!!
+
+    val vowels = listOf("a", "i", "u", "e", "o")
+
+    if (vowels.contains(c)) {
+        println("vowel")
+    } else {
+        println("consonant")
     }
 }

@@ -6,7 +6,20 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC059A()
+    solveABC059B()
+}
+
+fun solveABC059B() {
+    val a = readLn().padStart(1000, '0')
+    val b = readLn().padStart(1000, '0')
+
+    if (a > b) {
+        println("GREATER")
+    } else if (a < b) {
+        println("LESS")
+    } else {
+        println("EQUAL")
+    }
 }
 
 fun solveABC059A() {

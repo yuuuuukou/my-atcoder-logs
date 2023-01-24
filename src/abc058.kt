@@ -6,7 +6,20 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC058A()
+    solveABC058B()
+}
+
+fun solveABC058B() {
+    val o = readLn()
+    val e = readLn()
+
+    for (i in 0..o.lastIndex) {
+        print(o[i])
+        if (i <= e.lastIndex) {
+            print(e[i])
+        }
+    }
+    println()
 }
 
 fun solveABC058A() {
