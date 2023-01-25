@@ -1,3 +1,4 @@
+import kotlin.math.PI
 import kotlin.math.max
 
 private val reader = System.`in`.bufferedReader()
@@ -13,7 +14,29 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC026A()
+    solveABC026B()
+}
+
+fun solveABC026B() {
+    val n = readInt()
+    val r = mutableListOf<Int>()
+    repeat(n) {
+        r.add(readInt())
+    }
+    r.sortDescending()
+
+    var tmp = 0
+    for (i in 0 until n) {
+        if (i % 2 == 0) {
+            // plus
+            tmp += r[i] * r[i]
+        } else {
+            // minus
+            tmp -= r[i] * r[i]
+        }
+    }
+
+    println(tmp * PI)
 }
 
 fun solveABC026A() {
