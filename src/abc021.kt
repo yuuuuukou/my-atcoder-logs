@@ -11,7 +11,28 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC021A()
+    solveABC021B()
+}
+
+fun solveABC021B() {
+    val n = readInt()
+    val (a, b) = readInts()
+    val k = readInt()
+    val p = readInts()
+
+    val map = mutableMapOf<Int, Int>()
+    map[a] = (map[a] ?: 0) + 1
+    map[b] = (map[b] ?: 0) + 1
+    for (pi in p) {
+        map[pi] = (map[pi] ?: 0) + 1
+    }
+    for (item in map) {
+        if (item.value >= 2) {
+            println("NO")
+            return
+        }
+    }
+    println("YES")
 }
 
 fun solveABC021A() {
