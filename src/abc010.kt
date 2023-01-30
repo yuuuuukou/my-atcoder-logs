@@ -11,7 +11,27 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC010A()
+    solveABC010B()
+}
+
+fun solveABC010B() {
+    val n = readInt()
+    val a = readInts()
+
+    var sum = 0
+    for (ai in a) {
+        for (num in ai downTo 1) {
+            if (num % 2 == 0 || num % 3 == 2) {
+                // ng
+                sum++
+            } else {
+                // ok
+                break
+            }
+        }
+    }
+
+    println(sum)
 }
 
 fun solveABC010A() {
