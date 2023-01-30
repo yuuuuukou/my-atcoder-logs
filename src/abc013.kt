@@ -1,3 +1,5 @@
+import kotlin.math.min
+
 private val reader = System.`in`.bufferedReader()
 private fun readString() = reader.readLine()
 private fun readStrings() = readString().split(" ").toMutableList()
@@ -11,7 +13,23 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC013A()
+    solveABC013B()
+}
+
+fun solveABC013B() {
+    val a = readInt()
+    val b = readInt()
+
+    var tmp1: Int
+    var tmp2: Int
+    if (b >= a) {
+        tmp1 = b - a
+        tmp2 = a + 10 - b
+    } else {
+        tmp1 = a - b
+        tmp2 = b + 10 - a
+    }
+    println(min(tmp1, tmp2))
 }
 
 fun solveABC013A() {
