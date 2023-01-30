@@ -11,7 +11,17 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC012A()
+    solveABC012B()
+}
+
+fun solveABC012B() {
+    val n = readInt()
+    val hh = n / (60 * 60)
+    val mm = (n % (60 * 60)) / 60
+    val ss = (n % 60)
+    println("${hh.toString().padStart(2, '0')}:" +
+            "${mm.toString().padStart(2, '0')}:" +
+            "${ss.toString().padStart(2, '0')}")
 }
 
 fun solveABC012A() {
