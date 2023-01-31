@@ -12,11 +12,11 @@ private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() 
 
 fun main(args: Array<String>) {
     Thread(null, {
-        solveABC286C()
-    }, "solveABC286C", 1.shl(26)).start()
+        solveABC287C()
+    }, "solveABC287C", 1.shl(26)).start()
 }
 
-fun solveABC286C() {
+fun solveABC287C() {
     val (n, m) = readInts()
 
     val map = mutableMapOf<Int, MutableMap<Int, Int>>()
@@ -97,7 +97,7 @@ fun solve(node: Int, map: MutableMap<Int, MutableMap<Int, Int>>, nodes: MutableM
     }
 }
 
-fun solveABC286B() {
+fun solveABC287B() {
     val (n, m) = readInts()
     val s = mutableListOf<String>()
     val t = mutableListOf<String>()
@@ -117,7 +117,7 @@ fun solveABC286B() {
     println(cnt)
 }
 
-fun solveABC286A() {
+fun solveABC287A() {
     val n = readInt()
     var cnt = 0
     repeat(n) {
