@@ -1,3 +1,5 @@
+import kotlin.math.min
+
 private fun readString() = readLine()!!
 private fun readStrings() = readString().split(" ").toMutableList()
 private fun readInt() = readString().toInt()
@@ -10,7 +12,16 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC005A()
+    solveABC005B()
+}
+
+fun solveABC005B() {
+    val n = readInt()
+    var res = Int.MAX_VALUE
+    repeat(n) {
+        res = min(res, readInt())
+    }
+    println(res)
 }
 
 fun solveABC005A() {
