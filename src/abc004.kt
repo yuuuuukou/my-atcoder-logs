@@ -10,7 +10,21 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC004A()
+    solveABC004B()
+}
+
+fun solveABC004B() {
+    val c = mutableListOf<MutableList<String>>()
+    c.add(readStrings())
+    c.add(readStrings())
+    c.add(readStrings())
+    c.add(readStrings())
+    for (i in 3 downTo 0) {
+        for (j in 3 downTo 0) {
+            print("${c[i][j]} ")
+        }
+        println()
+    }
 }
 
 fun solveABC004A() {
