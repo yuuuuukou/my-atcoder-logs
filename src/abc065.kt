@@ -8,7 +8,34 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC065A()
+    solveABC065B()
+}
+
+fun solveABC065B() {
+    val n = readInt()
+    val a = mutableListOf<Int>()
+    repeat(n) {
+        a.add(readInt())
+    }
+
+    var cnt = 0
+    var current = 0
+    val seen = mutableMapOf<Int, Int>()
+    while (true) {
+        cnt++
+        val next = a[current] - 1
+        if (next == 1) {
+            println(cnt)
+            return
+        }
+        if (seen.contains(next)) {
+            println(-1)
+            return
+        }
+
+        seen[current] = 1
+        current = next
+    }
 }
 
 fun solveABC065A() {
