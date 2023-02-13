@@ -11,7 +11,41 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC023A()
+    solveABC023B()
+}
+
+fun solveABC023B() {
+    val n = readInt()
+    val s = readString()
+
+    var i = 1
+    var tmp = "b"
+    if (tmp == s) {
+        println(0)
+        return
+    }
+    while (tmp.length <= n) {
+        when (i % 3) {
+            1 -> {
+                tmp = "a" + tmp + "c"
+            }
+            2 -> {
+                tmp = "c" + tmp + "a"
+            }
+            0 -> {
+                tmp = "b" + tmp + "b"
+            }
+        }
+
+        if (tmp == s) {
+            println(i)
+            return
+        }
+
+        i++
+    }
+
+    println(-1)
 }
 
 fun solveABC023A() {
