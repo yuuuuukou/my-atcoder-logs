@@ -1,3 +1,4 @@
+import kotlin.math.absoluteValue
 import kotlin.math.min
 
 private val reader = System.`in`.bufferedReader()
@@ -13,7 +14,23 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC040A()
+    solveABC040B()
+}
+
+fun solveABC040B() {
+    val n = readInt()
+
+    var res = Int.MAX_VALUE
+    for (i in 1..100000) {
+        for (j in 1..100000) {
+            if (i * j > n) break
+
+            val reminder = n - i * j
+            res = min(res, (i - j).absoluteValue + reminder)
+        }
+    }
+
+    println(res)
 }
 
 fun solveABC040A() {
