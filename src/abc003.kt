@@ -10,7 +10,25 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC003A()
+    solveABC003B()
+}
+
+fun solveABC003B() {
+    val s = readString()
+    val t = readString()
+
+    for (i in s.indices) {
+        val si = s[i]
+        val ti = t[i]
+        if (si == ti) continue
+        if (si == '@' && ti in arrayOf('a', 't', 'c', 'o', 'd', 'e', 'r')) continue
+        if (ti == '@' && si in arrayOf('a', 't', 'c', 'o', 'd', 'e', 'r')) continue
+
+        println("You will lose")
+        return
+    }
+
+    println("You can win")
 }
 
 fun solveABC003A() {
