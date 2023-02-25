@@ -31,6 +31,20 @@ fun solveABC142C() {
     }
 }
 
+fun solveABC142B() {
+    val (n, k) = readInts()
+    val h = readInts()
+
+    var cnt = 0
+    for (hi in h) {
+        if (hi >= k) {
+            cnt++
+        }
+    }
+
+    println(cnt)
+}
+
 fun solveABC142A() {
     val n = readDouble()
     val odd = (n.toInt() + 1) / 2

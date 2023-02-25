@@ -21,3 +21,13 @@ fun solveABC053B() {
 
     println(endIndex - startIndex + 1)
 }
+
+fun solveABC053A() {
+    val (x) = readLine()!!.split(" ").map { it.toInt() }
+
+    if (x < 1200) {
+        println("ABC")
+    } else {
+        println("ARC")
+    }
+}

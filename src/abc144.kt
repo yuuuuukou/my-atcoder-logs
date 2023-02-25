@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
     solveABC144A()
 }
 
-private fun solveABC144B() {
+fun solveABC144B() {
     val n = readLine()!!.toInt()
 
     var result = "No"

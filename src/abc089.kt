@@ -6,7 +6,22 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC089A()
+    solveABC089B()
+}
+
+fun solveABC089B() {
+    val n = readInt()
+    val s = readStrings()
+
+    val map = mutableMapOf<String, Int>()
+    for (si in s) {
+        map[si] = 1
+    }
+
+    when (map.count()) {
+        3 -> println("Three")
+        4 -> println("Four")
+    }
 }
 
 fun solveABC089A() {

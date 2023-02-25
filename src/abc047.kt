@@ -46,3 +46,17 @@ fun solveABC047B() {
     }
 
 }
+
+fun solveABC047A() {
+    val (a,b,c) = readLine()!!.split(" ").map { it.toInt() }
+
+    if (
+        a == b + c
+        || b == a + c
+        || c == a + b
+    ) {
+        println("Yes")
+    } else {
+        println("No")
+    }
+}

@@ -1,3 +1,6 @@
+import kotlin.math.pow
+import kotlin.math.sqrt
+
 private val reader = System.`in`.bufferedReader()
 private fun readString() = reader.readLine()
 private fun readStrings() = readString().split(" ").toMutableList()
@@ -15,17 +18,12 @@ fun main(args: Array<String>) {
 }
 
 fun solveABC086B() {
-    val n = readInt()
-    val s = readStrings()
-
-    val map = mutableMapOf<String, Int>()
-    for (si in s) {
-        map[si] = 1
-    }
-
-    when (map.count()) {
-        3 -> println("Three")
-        4 -> println("Four")
+    val ab = readLine()!!.replace(" ", "").toInt()
+    val x = sqrt(ab.toDouble()).toInt()
+    if (x.toDouble().pow(2) == ab.toDouble()) {
+        println("Yes")
+    } else {
+        println("No")
     }
 }
 

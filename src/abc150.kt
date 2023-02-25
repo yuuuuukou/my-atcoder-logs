@@ -9,7 +9,7 @@ fun main(args: Array<String>) {
     solveABC150A()
 }
 
-private fun solveABC150B() {
+fun solveABC150B() {
     /*val n =*/ readLine()!!.toInt()
     val s = readLine()!!
 

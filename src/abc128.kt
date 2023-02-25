@@ -11,24 +11,6 @@ fun main(args: Array<String>) {
     solveABC128B()
 }
 
-fun solveABC128B() {
-    val n = readInt()
-
-    class Restaurant(val city: String, val score: Int, val no: Int)
-
-    var s = mutableListOf<Restaurant>()
-    for (i in 0 until n) {
-        val si = readStrings()
-        val restaurant = Restaurant(si[0], si[1].toInt(), i + 1)
-        s.add(restaurant)
-    }
-    s.sortWith(compareBy({ it.city }, { -it.score }))
-
-    for (si in s) {
-        println(si.no)
-    }
-}
-
 fun solveABC128C() {
     val (n, m) = readInts()
     val s = mutableListOf<MutableList<Int>>()
@@ -77,6 +59,24 @@ fun solveABC128C() {
         }
     }
     println(res)
+}
+
+fun solveABC128B() {
+    val n = readInt()
+
+    class Restaurant(val city: String, val score: Int, val no: Int)
+
+    var s = mutableListOf<Restaurant>()
+    for (i in 0 until n) {
+        val si = readStrings()
+        val restaurant = Restaurant(si[0], si[1].toInt(), i + 1)
+        s.add(restaurant)
+    }
+    s.sortWith(compareBy({ it.city }, { -it.score }))
+
+    for (si in s) {
+        println(si.no)
+    }
 }
 
 fun solveABC128A() {

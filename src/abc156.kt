@@ -9,7 +9,7 @@ fun main(args: Array<String>) {
     solveABC156A()
 }
 
-private fun solveABC156C() {
+fun solveABC156C() {
     /*val n = */readLine()!!.toInt()
     val xList = readLine()!!.split(" ").map { it.toInt() }
 
