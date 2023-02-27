@@ -11,7 +11,32 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC027A()
+    solveABC027B()
+}
+
+fun solveABC027B() {
+    val n = readInt()
+    val a = readInts()
+
+    if (a.sum() % n != 0) {
+        println(-1)
+        return
+    }
+
+    var res = 0
+    val avg = a.average().toInt()
+    var currentSum = 0
+    for ((i, ai) in a.withIndex()) {
+        currentSum += ai
+        if (currentSum == avg * (i + 1)) {
+            // そのままでok
+        } else {
+            // 橋が必要
+            res++
+        }
+    }
+
+    println(res)
 }
 
 fun solveABC027A() {
