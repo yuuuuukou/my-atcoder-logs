@@ -12,8 +12,33 @@ private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() 
 
 fun main(args: Array<String>) {
     Thread(null, {
-        solveABC290B()
+        solveABC290C()
     }, "solve", 1.shl(26)).start()
+}
+
+fun solveABC290C() {
+    val (n, k) = readInts()
+    val a = readInts().sorted()
+
+    // どこまで連続しているか確認
+    var tmp = -1
+    for (ai in a) {
+        if (ai == tmp) {
+            // 連続している
+        } else if (ai == tmp + 1) {
+            // tmp+1まで連続している
+            tmp++
+        } else {
+            // 非連続になるので抜ける
+            break
+        }
+    }
+
+    if (tmp < k) {
+        println(tmp + 1)
+    } else {
+        println(k)
+    }
 }
 
 fun solveABC290B() {
