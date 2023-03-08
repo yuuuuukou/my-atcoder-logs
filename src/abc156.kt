@@ -6,7 +6,7 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC156A()
+    solveABC156B()
 }
 
 fun solveABC156C() {
@@ -30,14 +30,7 @@ fun solveABC156C() {
 
 fun solveABC156B() {
     val (n, k) = readLine()!!.split(" ").map { it.toInt() }
-
-    var ndash = n
-    var ansDigit = 1
-    while (ndash >= k) {
-        ndash /= k
-        ansDigit++
-    }
-    println(ansDigit)
+    println(n.toString(k).length)
 }
 
 fun solveABC156A() {
