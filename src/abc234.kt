@@ -14,7 +14,40 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC234B()
+    solveABC234C()
+}
+
+fun solveABC234C() {
+    val k = readLong()
+
+    // 0  0000
+    // 1  0002
+    // 2  0020
+    // 3  0022
+    // 4  0200
+    // 5  0202
+    // 6  0220
+    // 7  0222
+    // 8  2000
+    // 9  2002
+    // 10 2020
+    // 11 2022
+    // 1桁目 2で割ったあまりが   0なら0             1なら2
+    // 2桁目 4で割ったあまりが   0,1なら0           2,3なら2
+    // 3桁目 8で割ったあまりが   0,1,2,3なら0       4,5,6,7なら2
+    // i桁目 2^iで割ったあまりが 2^i/2より小さいなら0 2^i/2以上なら2
+    var res = ""
+    for (i in 1..100) {
+        // i桁目
+        val base = 2.0.pow(i).toLong()
+        res = if (k % base < base / 2L) {
+            "0$res"
+        } else {
+            "2$res"
+        }
+    }
+
+    println(res.trimStart('0'))
 }
 
 fun solveABC234B() {
