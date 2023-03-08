@@ -10,7 +10,21 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC236B()
+    solveABC236C()
+}
+
+fun solveABC236C() {
+    val (n, m) = readInts()
+    val s = readStrings()
+    val t = readStrings().toSet()
+
+    for (si in s) {
+        if (t.contains(si)) {
+            println("Yes")
+        } else {
+            println("No")
+        }
+    }
 }
 
 fun solveABC236B() {
