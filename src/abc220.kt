@@ -1,5 +1,6 @@
 import kotlin.math.pow
 
+
 private fun readString() = readLine()!!
 private fun readStrings() = readString().split(" ").toMutableList()
 private fun readInt() = readString().toInt()
@@ -8,7 +9,26 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC220B()
+    solveABC220C()
+}
+
+fun solveABC220C() {
+    val n = readLong()
+    val a = readLongs()
+    val x = readLong()
+
+    var cnt = (x / a.sum()) * a.count()
+    var tmp = 0L
+    val aSum = a.sum()
+    for (i in a.indices) {
+        if (tmp > x % aSum) {
+            break
+        }
+        tmp += a[i]
+        cnt++
+    }
+
+    println(cnt)
 }
 
 fun solveABC220B() {
