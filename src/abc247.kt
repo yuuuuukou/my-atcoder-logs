@@ -10,7 +10,27 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC247B()
+    solveABC247C()
+}
+
+fun solveABC247C() {
+    val n = readInt()
+
+    var res = "s$n"
+    for (i in n downTo 1) {
+        var tmp = ""
+        when (i) {
+            1 -> {
+                tmp = "1"
+            }
+            else -> {
+                tmp = "s${i - 1} $i s${i - 1}"
+            }
+        }
+        res = res.replace("s$i", tmp)
+    }
+
+    println(res)
 }
 
 fun solveABC247B() {

@@ -6,7 +6,18 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC269D()
+    solveABC269C()
+}
+
+fun solveABC269C() {
+    val n = readLong()
+
+    for (i in 0..n) {
+        println(i.toString(2))
+        println(i.toString(2).toByte(2))
+    }
+
+    // わからん、解説ACする
 }
 
 fun solveABC269D() {
@@ -84,7 +95,10 @@ private fun isLinked(node1: Pair<Int, Int>, node2: Pair<Int, Int>): Boolean {
 }
 
 // 重複グループの統合
-fun mergeGroups(containGroupKeys: MutableList<String>, groupMap: MutableMap<String, MutableList<Pair<Int, Int>>>) : MutableMap<String, MutableList<Pair<Int, Int>>> {
+fun mergeGroups(
+    containGroupKeys: MutableList<String>,
+    groupMap: MutableMap<String, MutableList<Pair<Int, Int>>>
+): MutableMap<String, MutableList<Pair<Int, Int>>> {
     if (containGroupKeys.count() <= 1) {
         return groupMap
     }
