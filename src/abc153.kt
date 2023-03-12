@@ -6,11 +6,29 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC153B()
+    solveABC153C()
+}
+
+fun solveABC153C() {
+    val (n, k) = readLongs()
+    val h = readLongs().sortedDescending()
+
+    var certainKillCnt = 0
+    var res = 0L
+    for (hi in h) {
+        if (certainKillCnt < k) {
+            certainKillCnt++
+            continue
+        }
+
+        res += hi
+    }
+
+    println(res)
 }
 
 fun solveABC153B() {
-    val (h,n) = readInts()
+    val (h, n) = readInts()
     val a = readInts()
 
     if (h <= a.sum()) {
