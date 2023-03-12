@@ -1,12 +1,23 @@
-private fun readLn() = readLine()!!
-private fun readStrings() = readLn().split(" ").toMutableList()
-private fun readInt() = readLn().toInt()
-private fun readInts() = readLn().split(" ").map { it.toInt() }.toMutableList()
-private fun readLong() = readLn().toLong()
-private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
+private fun readString() = readLine()!!
+private fun readStrings() = readString().split(" ").toMutableList()
+private fun readInt() = readString().toInt()
+private fun readInts() = readString().split(" ").map { it.toInt() }.toMutableList()
+private fun readLong() = readString().toLong()
+private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC164B()
+    solveABC164C()
+}
+
+fun solveABC164C() {
+    val n = readInt()
+
+    val set = mutableSetOf<String>()
+    repeat(n) {
+        set.add(readString())
+    }
+
+    println(set.count())
 }
 
 fun solveABC164B() {
