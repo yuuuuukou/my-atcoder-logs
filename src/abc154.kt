@@ -6,7 +6,18 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC154B()
+    solveABC154C()
+}
+
+fun solveABC154C() {
+    val n = readInt()
+    val a = readInts()
+
+    if (a.count() == a.distinct().count()) {
+        println("YES")
+    } else {
+        println("NO")
+    }
 }
 
 fun solveABC154B() {
