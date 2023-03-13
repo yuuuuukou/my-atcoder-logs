@@ -1,4 +1,5 @@
 import kotlin.math.absoluteValue
+import kotlin.system.exitProcess
 
 private fun readString() = readLine()!!
 private fun readStrings() = readString().split(" ").toMutableList()
@@ -8,9 +9,11 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    Thread(null, {
+    val thread = Thread(null, Runnable {
         solveABC188C()
-    }, "solve", 1.shl(26)).start()
+    }, "solve", 1.shl(26))
+    thread.setUncaughtExceptionHandler { _, e -> e.printStackTrace(); exitProcess(1) }
+    thread.start()
 }
 
 fun solveABC188C() {
