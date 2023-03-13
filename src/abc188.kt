@@ -8,7 +8,47 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC188B()
+    Thread(null, {
+        solveABC188C()
+    }, "solve", 1.shl(26)).start()
+}
+
+fun solveABC188C() {
+    val n = readInt()
+    val a = readLongs()
+
+    var a1 = a.toMutableList()
+    var a2 = mutableListOf<Long>()
+    while (true) {
+        for (i in a1.indices step 2) {
+            val tmp1 = a1[i]
+            val tmp2 = a1[i + 1]
+            if (tmp1 != 0L && tmp2 != 0L) {
+                if (tmp1 < tmp2) {
+                    a2.add(tmp2)
+                } else {
+                    a2.add(tmp1)
+                }
+            }
+        }
+
+        if (a2.size == 2) {
+            val second = if (a2[0] < a2[1]) {
+                a2[0]
+            } else {
+                a2[1]
+            }
+            for ((i, ai) in a.withIndex()) {
+                if (second == ai) {
+                    println(i + 1)
+                    return
+                }
+            }
+        } else {
+            a1 = a2
+            a2 = mutableListOf()
+        }
+    }
 }
 
 fun solveABC188B() {
