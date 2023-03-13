@@ -23,12 +23,10 @@ fun solveABC188C() {
         for (i in a1.indices step 2) {
             val tmp1 = a1[i]
             val tmp2 = a1[i + 1]
-            if (tmp1 != 0L && tmp2 != 0L) {
-                if (tmp1 < tmp2) {
-                    a2.add(tmp2)
-                } else {
-                    a2.add(tmp1)
-                }
+            if (tmp1 < tmp2) {
+                a2.add(tmp2)
+            } else {
+                a2.add(tmp1)
             }
         }
 
