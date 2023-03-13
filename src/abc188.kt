@@ -18,8 +18,8 @@ fun solveABC188C() {
     val a = readLongs()
 
     var a1 = a.toMutableList()
-    var a2 = mutableListOf<Long>()
-    while (true) {
+    while (a1.size > 2) {
+        var a2 = mutableListOf<Long>()
         for (i in a1.indices step 2) {
             val tmp1 = a1[i]
             val tmp2 = a1[i + 1]
@@ -29,20 +29,14 @@ fun solveABC188C() {
                 a2.add(tmp1)
             }
         }
-
-        if (a2.size == 2) {
-            val second = if (a2[0] < a2[1]) {
-                a2[0]
-            } else {
-                a2[1]
-            }
-            println(a.indexOf(second) + 1)
-            return
-        } else {
-            a1 = a2
-            a2 = mutableListOf()
-        }
+        a1 = a2
     }
+    val second = if (a1[0] < a1[1]) {
+        a1[0]
+    } else {
+        a1[1]
+    }
+    println(a.indexOf(second) + 1)
 }
 
 fun solveABC188B() {
