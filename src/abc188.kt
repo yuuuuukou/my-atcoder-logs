@@ -36,12 +36,8 @@ fun solveABC188C() {
             } else {
                 a2[1]
             }
-            for ((i, ai) in a.withIndex()) {
-                if (second == ai) {
-                    println(i + 1)
-                    return
-                }
-            }
+            println(a.indexOf(second) + 1)
+            return
         } else {
             a1 = a2
             a2 = mutableListOf()
