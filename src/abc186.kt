@@ -6,7 +6,20 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC186B()
+    solveABC186C()
+}
+
+fun solveABC186C() {
+    val n = readInt()
+
+    var cnt = 0
+    for (i in 1..n) {
+        if (!i.toString().contains("7") && !i.toString(8).contains("7")) {
+            cnt++
+        }
+    }
+
+    println(cnt)
 }
 
 fun solveABC186B() {
