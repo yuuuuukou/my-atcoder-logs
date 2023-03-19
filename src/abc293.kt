@@ -16,75 +16,114 @@ fun main(args: Array<String>) {
     }, "solve", 1.shl(26)).start()
 }
 
+private class UnionFind {
+    val parentNode: MutableList<Int>
+    val groupSize: MutableList<Int>
+
+    constructor(n: Int) {
+        parentNode = MutableList(n) { -1 }
+        groupSize = MutableList(n) { 1 }
+    }
+
+    /**
+     * 根を求める
+     */
+    fun root(x: Int): Int {
+        return if (parentNode[x] == -1) {
+            x // x が根の場合は x を返す
+        } else {
+            root(parentNode[x])
+        }
+    }
+
+    /**
+     * x と y が同じグループに属するかどうか
+     * (根が一致するかどうか)
+     */
+    fun isSameGroup(x: Int, y: Int): Boolean {
+        return root(x) == root(y)
+    }
+
+    /**
+     * x を含むグループと y を含むグループとを併合する
+     */
+    fun unite(x: Int, y: Int): Boolean {
+        // x, y をそれぞれ根まで移動する
+        val xx = root(x)
+        val yy = root(y)
+
+        // すでに同じグループのときは何もしない
+        if (xx == yy) return false
+
+        // union by size (y 側のサイズが小さくなるようにする)
+        if (groupSize[xx] < groupSize[yy]) {
+            parentNode[xx] = yy
+            groupSize[yy] = groupSize[yy] + groupSize[xx]
+        } else {
+            parentNode[yy] = xx
+            groupSize[xx] = groupSize[xx] + groupSize[yy]
+        }
+        return true
+    }
+
+    /**
+     * x を含むグループのサイズ
+     */
+    fun size(x: Int): Int {
+        return groupSize[root(x)]
+    }
+
+    /**
+     * このUnionFind内のグループの個数
+     */
+    fun groupCount(): Int {
+        return parentNode.count { it == -1 }
+    }
+}
 
 fun solveABC293D() {
     val (n, m) = readInts()
 
-    val map = mutableMapOf<String, MutableSet<String>>()
+    val uf = UnionFind(2 * n + 1)
 
     for (i in 1..n) {
-        val tmp = map["${i}R"] ?: mutableSetOf()
-        tmp.add("${i}B")
-        map["${i}R"] = tmp
-
-        val tmp2 = map["${i}B"] ?: mutableSetOf()
-        tmp2.add("${i}R")
-        map["${i}B"] = tmp2
+        // 1 1-red
+        // 2 1-blue
+        // 3 2-red
+        // 4 2-red
+        // :
+        uf.unite(2 * i - 1, 2 * i)
     }
+
+    var cycleCnt = 0
 
     repeat(m) {
         val (ai, bi, ci, di) = readStrings()
 
-        val tmp = map["${ai}${bi}"] ?: mutableSetOf()
-        tmp.add("${ci}${di}")
-        map["${ai}${bi}"] = tmp
-
-        val tmp2 = map["${ci}${di}"] ?: mutableSetOf()
-        tmp2.add("${ai}${bi}")
-        map["${ci}${di}"] = tmp2
-    }
-
-    // 1Rから辿ってどこまで行けるか
-    // 到達できる範囲はグループ内
-    // グループ内に1Rとリンクするnodeが2つあればサイクル
-    var x = 0
-    var y = 0
-    val seen = mutableSetOf<String>()
-    fun solve(node: String, prev: String, start: String, map: MutableMap<String, MutableSet<String>>, seen:MutableSet<String>) {
-        if (seen.contains(node)) {
-            return
-        }
-        if (node == start && prev != start) {
-            x++
-            seen.add(node)
-            return
-        }
-        if (map[node]!!.count() == 1) {
-            // for (item in map[node]) {
-            //     if (item == prev) {
-            //         y++
-            //         return
-            //     }
-            // }
-            y++
-            seen.add(node)
-            return
-        }
-
-        for (next in map[node]!!) {
-            if (next == prev) {
-                continue
+        if (bi == "R") {
+            if (di == "R") {
+                if (!uf.unite(2 * ai.toInt() - 1, 2 * ci.toInt() - 1)) {
+                    cycleCnt++
+                }
+            } else {
+                if (!uf.unite(2 * ai.toInt() - 1, 2 * ci.toInt())) {
+                    cycleCnt++
+                }
             }
-
-            solve(next, node, start, map, seen)
+        } else {
+            if (di == "R") {
+                if (!uf.unite(2 * ai.toInt(), 2 * ci.toInt() - 1)) {
+                    cycleCnt++
+                }
+            } else {
+                if (!uf.unite(2 * ai.toInt(), 2 * ci.toInt())) {
+                    cycleCnt++
+                }
+            }
         }
     }
 
-    for (i in 1..m) {
-        solve("${i}R", "", "${i}R", map, seen)
-    }
-
-    println("$x $y")
+    println("$cycleCnt ${uf.groupCount() - 1 - cycleCnt}")
 }
 
 fun solveABC293C() {
