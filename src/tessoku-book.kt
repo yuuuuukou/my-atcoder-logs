@@ -11,7 +11,17 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookB03()
+    solveTessokuBookB04()
+}
+
+fun solveTessokuBookB04() {
+    val n = readString()
+    println(n.toInt(2))
+}
+
+fun solveTessokuBookA04() {
+    val n = readInt()
+    println(n.toString(2).padStart(10, '0'))
 }
 
 fun solveTessokuBookB03() {
