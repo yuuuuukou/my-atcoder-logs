@@ -11,7 +11,63 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookA05()
+    solveTessokuBookB06()
+}
+
+fun solveTessokuBookB06() {
+    val n = readInt()
+    val a = readInts()
+    val q = readInt()
+
+    val aSum = mutableListOf<Int>()
+    for ((i, ai) in a.withIndex()) {
+        if (i == 0) {
+            aSum.add(ai)
+        } else {
+            aSum.add(aSum[aSum.lastIndex] + ai)
+        }
+    }
+
+    repeat(q) {
+        val (li, ri) = readInts()
+        val times = ri - li + 1
+        val win = if (li == 1) {
+            aSum[ri - 1]
+        } else {
+            aSum[ri - 1] - aSum[li - 1 - 1]
+        }
+
+        val half = times.toDouble() / 2.0
+        if (half < win.toDouble()) {
+            println("win")
+        } else if (half == win.toDouble()) {
+            println("draw")
+        } else if (half > win.toDouble()) {
+            println("lose")
+        }
+    }
+}
+
+fun solveTessokuBookA06() {
+    val (n, q) = readInts()
+    val a = readInts()
+
+    val aSum = mutableListOf<Int>()
+    for ((i, ai) in a.withIndex()) {
+        if (i == 0) {
+            aSum.add(ai)
+        } else {
+            aSum.add(aSum[aSum.lastIndex] + ai)
+        }
+    }
+    repeat(q) {
+        val (li, ri) = readInts()
+        if (li == 1) {
+            println(aSum[ri - 1])
+        } else {
+            println(aSum[ri - 1] - aSum[li - 1 - 1])
+        }
+    }
 }
 
 fun solveTessokuBookA05() {
