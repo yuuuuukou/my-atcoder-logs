@@ -11,7 +11,23 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookB04()
+    solveTessokuBookA05()
+}
+
+fun solveTessokuBookA05() {
+    val (n, k) = readInts()
+
+    var cnt = 0
+    for (red in 1..n) {
+        for (blue in 1..n) {
+            val white = k - red - blue
+            if (white in 1..n) {
+                cnt++
+            }
+        }
+    }
+
+    println(cnt)
 }
 
 fun solveTessokuBookB04() {
