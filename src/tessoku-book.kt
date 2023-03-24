@@ -11,7 +11,40 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookA08()
+    solveTessokuBookB08()
+}
+
+fun solveTessokuBookB08() {
+    val n = readInt()
+    val matrix = MutableList(1502) { MutableList(1502) { 0 } }
+    repeat(n) {
+        val (xi, yi) = readInts()
+        matrix[xi][yi] += 1
+    }
+
+    // x方向累積
+    for (i in 0..1500) {
+        var pre = 0
+        for (j in 0..1500) {
+            matrix[i][j] += pre
+            pre = matrix[i][j]
+        }
+    }
+
+    // y方向累積
+    for (j in 0..1500) {
+        var pre = 0
+        for (i in 0..1500) {
+            matrix[i][j] += pre
+            pre = matrix[i][j]
+        }
+    }
+
+    val q = readInt()
+    repeat(q) {
+        val (ai, bi, ci, di) = readInts()
+        println(matrix[ci][di] + matrix[ai - 1][bi - 1] - matrix[ci][bi - 1] - matrix[ai - 1][di])
+    }
 }
 
 fun solveTessokuBookA08() {
