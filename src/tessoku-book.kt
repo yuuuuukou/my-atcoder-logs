@@ -1,3 +1,5 @@
+import kotlin.math.max
+
 private val reader = System.`in`.bufferedReader()
 private fun readString() = reader.readLine()
 private fun readStrings() = readString().split(" ").toMutableList()
@@ -11,7 +13,32 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookB09()
+    solveTessokuBookA10()
+}
+
+fun solveTessokuBookA10() {
+    val n = readInt()
+    val a = readInts()
+    val aLeft = a.toMutableList()
+    for (i in a.indices) {
+        if (i != 0) {
+            aLeft[i] = max(aLeft[i], aLeft[i - 1])
+        }
+    }
+    val aRight = a.toMutableList()
+    for (i in a.lastIndex downTo 0) {
+        if (i != a.lastIndex) {
+            aRight[i] = max(aRight[i], aRight[i + 1])
+        }
+    }
+
+    val d = readInt()
+    repeat(d) {
+        val (li, ri) = readInts()
+        val leftMax = if (li - 1 == 0) 0 else aLeft[li - 2]
+        val rightMax = if (ri - 1 == aRight.lastIndex) 0 else aRight[ri]
+        println(max(leftMax, rightMax))
+    }
 }
 
 fun solveTessokuBookB09() {
