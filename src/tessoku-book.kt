@@ -13,7 +13,39 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookA10()
+    solveTessokuBookA11()
+}
+
+fun solveTessokuBookA11() {
+    val (n, x) = readInts()
+    val a = readInts()
+
+    var start = 0
+    var half = n / 2
+    var end = a.lastIndex
+    while (true) {
+        val halfValue = a[half]
+
+        if (end - start == 1) {
+            if (x == a[start]) {
+                println(start + 1)
+            } else {
+                println(end + 1)
+            }
+            return
+        } else {
+            if (x == halfValue) {
+                println(half + 1)
+                return
+            } else if (x > halfValue) {
+                start = half
+                half += (end - start) / 2
+            } else if (x < halfValue) {
+                end = half
+                half -= (end - start) / 2
+            }
+        }
+    }
 }
 
 fun solveTessokuBookA10() {
