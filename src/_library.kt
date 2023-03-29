@@ -47,7 +47,8 @@ class _library {
      * コードの参考: https://koboshi-kyopro.hatenablog.com/entry/2021/07/21/193611
      * コメントの参考: https://qiita.com/Nikkely/items/0ddca51b3c0e60afbaab
      */
-    private fun nextPermutation(array: MutableList<Int>): Boolean {
+
+    fun nextPermutation(array: MutableList<Int>): Boolean {
         // i: array[i] < array[i + 1]を満たすもののうちインデックス最大のものを探す。のでdownToでループ
         for (i in array.lastIndex - 1 downTo 0) {
             if (array[i] < array[i + 1]) {
@@ -83,7 +84,7 @@ class _library {
      * nextPermutationをベースに不等号、ソート順を修正
      * 修正方針の参考：https://qiita.com/HMMNRST/items/26786552a2660735d34f
      */
-    private fun prevPermutation(array: MutableList<Int>): Boolean {
+    fun prevPermutation(array: MutableList<Int>): Boolean {
         // i: array[i] < array[i + 1]を満たすもののうちインデックス最大のものを探す。のでdownToでループ
         for (i in array.lastIndex - 1 downTo 0) {
             if (array[i] > array[i + 1]) {
@@ -174,5 +175,34 @@ class _library {
         fun groupCount(): Int {
             return parentNode.count { it == -1 }
         }
+    }
+
+
+    private fun lowerBound(list: List<Int>, value: Int): Int {
+        var left = 0
+        var right = list.lastIndex
+        while (left <= right) {
+            val mid = left + (right - 1) / 2
+            if (list[mid] < value) {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        }
+        return left
+    }
+
+    private fun upperBound(list: List<Int>, value: Int): Int {
+        var left = 0
+        var right = list.lastIndex
+        while (left <= right) {
+            val mid = left + (right - 1) / 2
+            if (list[mid] <= value) {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        }
+        return left
     }
 }
