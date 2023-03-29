@@ -13,7 +13,7 @@ class _library {
     private fun readBigDecimal() = readString().toBigDecimal()
     private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
-    fun bitSearch() {
+    private fun bitSearch() {
         val n = 10 // readLine()!!.toInt()
 
         val pattern = 2.0.pow(n).toInt()
@@ -47,7 +47,7 @@ class _library {
      * コードの参考: https://koboshi-kyopro.hatenablog.com/entry/2021/07/21/193611
      * コメントの参考: https://qiita.com/Nikkely/items/0ddca51b3c0e60afbaab
      */
-    fun nextPermutation(array: MutableList<Int>): Boolean {
+    private fun nextPermutation(array: MutableList<Int>): Boolean {
         // i: array[i] < array[i + 1]を満たすもののうちインデックス最大のものを探す。のでdownToでループ
         for (i in array.lastIndex - 1 downTo 0) {
             if (array[i] < array[i + 1]) {
@@ -83,7 +83,7 @@ class _library {
      * nextPermutationをベースに不等号、ソート順を修正
      * 修正方針の参考：https://qiita.com/HMMNRST/items/26786552a2660735d34f
      */
-    fun prevPermutation(array: MutableList<Int>): Boolean {
+    private fun prevPermutation(array: MutableList<Int>): Boolean {
         // i: array[i] < array[i + 1]を満たすもののうちインデックス最大のものを探す。のでdownToでループ
         for (i in array.lastIndex - 1 downTo 0) {
             if (array[i] > array[i + 1]) {
