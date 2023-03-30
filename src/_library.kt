@@ -178,11 +178,14 @@ class _library {
     }
 
 
-    private fun lowerBound(list: List<Int>, value: Int): Int {
+    /**
+     * ref: https://webbibouroku.com/Blog/Article/cs-lowerbound-upperbound
+     */
+    fun lowerBound(list: List<Int>, value: Int): Int {
         var left = 0
         var right = list.lastIndex
         while (left <= right) {
-            val mid = left + (right - 1) / 2
+            val mid = (left + right) / 2
             if (list[mid] < value) {
                 left = mid + 1
             } else {
@@ -192,11 +195,14 @@ class _library {
         return left
     }
 
-    private fun upperBound(list: List<Int>, value: Int): Int {
+    /**
+     * ref: https://webbibouroku.com/Blog/Article/cs-lowerbound-upperbound
+     */
+    fun upperBound(list: List<Int>, value: Int): Int {
         var left = 0
         var right = list.lastIndex
         while (left <= right) {
-            val mid = left + (right - 1) / 2
+            val mid = (left + right) / 2
             if (list[mid] <= value) {
                 left = mid + 1
             } else {

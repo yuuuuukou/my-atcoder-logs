@@ -27,4 +27,24 @@ class _libraryTest {
         assertEquals(boolExpected, boolActual)
         assertEquals(expected, list)
     }
+
+    @Test
+    fun lowerBoundTest() {
+        val list = mutableListOf(1, 2, 2, 2, 4, 4, 4, 5, 6)
+        val expected = mutableListOf(0, 0, 1, 4, 4, 7, 8, 9)
+
+        for (i in 0..7) {
+            assertEquals(expected[i], _library().lowerBound(list, i))
+        }
+    }
+
+    @Test
+    fun upperBoundTest() {
+        val list = mutableListOf(1, 2, 2, 2, 4, 4, 4, 5, 6)
+        val expected = mutableListOf(0, 1, 4, 4, 7, 8, 9, 9)
+
+        for (i in 0..7) {
+            assertEquals(expected[i], _library().upperBound(list, i))
+        }
+    }
 }
