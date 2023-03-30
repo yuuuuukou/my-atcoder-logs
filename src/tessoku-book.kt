@@ -13,7 +13,37 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookB11()
+    solveTessokuBookA12()
+}
+
+fun solveTessokuBookA12() {
+    val (n, k) = readLongs()
+    val a = readLongs()
+
+    var left = 0L
+    var right = 10000000000
+    var mid = (left + right) / 2
+
+    while (left <= right) {
+        mid = (left + right) / 2
+
+        var printCnt = 0L
+        for (ai in a) {
+            printCnt += (mid / ai)
+        }
+        if (printCnt == k) {
+            println(mid)
+            return
+        } else if (printCnt < k) {
+            // 不足、もう少し大きい方に寄せる
+            left = mid + 1
+        } else {
+            // 過多、もう少し小さい方に寄せる
+            right = mid - 1
+        }
+    }
+
+    println(mid)
 }
 
 private fun lowerBound(list: List<Int>, value: Int): Int {
@@ -29,6 +59,7 @@ private fun lowerBound(list: List<Int>, value: Int): Int {
     }
     return left
 }
+
 fun solveTessokuBookB11() {
     val n = readInt()
     val a = readInts().sorted()
