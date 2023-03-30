@@ -20,30 +20,24 @@ fun solveTessokuBookA12() {
     val (n, k) = readLongs()
     val a = readLongs()
 
-    var left = 0L
+    var left = 1L
     var right = 10000000000
-    var mid = (left + right) / 2
+    var mid: Long
 
-    while (left <= right) {
+    while (left < right) {
         mid = (left + right) / 2
 
         var printCnt = 0L
         for (ai in a) {
             printCnt += (mid / ai)
         }
-        if (printCnt == k) {
-            println(mid)
-            return
-        } else if (printCnt < k) {
-            // 不足、もう少し大きい方に寄せる
+        if (printCnt >= k) {
+            right = mid
+        } else
             left = mid + 1
-        } else {
-            // 過多、もう少し小さい方に寄せる
-            right = mid - 1
-        }
     }
 
-    println(mid)
+    println(left)
 }
 
 private fun lowerBound(list: List<Int>, value: Int): Int {
