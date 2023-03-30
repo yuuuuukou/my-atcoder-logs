@@ -16,32 +16,26 @@ fun main(args: Array<String>) {
     solveTessokuBookB11()
 }
 
+private fun lowerBound(list: List<Int>, value: Int): Int {
+    var left = 0
+    var right = list.lastIndex
+    while (left <= right) {
+        val mid = (left + right) / 2
+        if (list[mid] < value) {
+            left = mid + 1
+        } else {
+            right = mid - 1
+        }
+    }
+    return left
+}
 fun solveTessokuBookB11() {
     val n = readInt()
     val a = readInts().sorted()
     val q = readInt()
     repeat(q) {
         val xi = readInt()
-        val index = a.binarySearch(xi)
-        if (index >= 0) {
-            // 対象の値がある -> 対象のインデックスが返る
-            // [3,5,6,7] 3を渡す -> 0が返る "index"
-            // [3,5,6,7] 5を渡す -> 1が返る "index"
-
-            println(index)
-
-        } else {
-            // 対象の値が無ければ、対象の値より大きい最も近い値のindex + 1が負数で返る
-
-            // [3,5,6,7] 2を渡す -> -1が返る "-(大きくて一番近い値のindex + 1)"
-            // [3,5,6,7] 4を渡す -> -2が返る "-(大きくて一番近い値のindex + 1)"
-
-            // 対象の数値よりも小さい要素の数
-            // -1 -> 0
-            // -2 -> 1
-            // に変換
-            println(-index - 1)
-        }
+        println(lowerBound(a, xi))
     }
 }
 
