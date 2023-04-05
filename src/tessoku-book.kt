@@ -13,7 +13,27 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookA12()
+    solveTessokuBookB12()
+}
+
+fun solveTessokuBookB12() {
+    val n = readDouble()
+
+    var l = 0.0
+    var r = n
+
+    while (true) {
+        var mid = (l + r) / 2
+        val tmp = mid * mid * mid + mid
+        if (tmp in n - 0.001..n + 0.001) {
+            println(mid)
+            return
+        } else if (tmp < n - 0.001) {
+            l = mid + 1
+        } else if (tmp > n + 0.001) {
+            r = mid - 1
+        }
+    }
 }
 
 fun solveTessokuBookA12() {
