@@ -1,4 +1,5 @@
 import kotlin.math.max
+import kotlin.math.min
 
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
@@ -10,7 +11,39 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC124B()
+    solveABC124C()
+}
+
+fun solveABC124C() {
+    val s = readLn()
+
+    var pattern1 = 0
+    for ((i, si) in s.withIndex()) {
+        if (i % 2 == 0) {
+            if (si == '0') {
+                pattern1++
+            }
+        } else {
+            if (si == '1') {
+                pattern1++
+            }
+        }
+    }
+
+    var pattern2 = 0
+    for ((i, si) in s.withIndex()) {
+        if (i % 2 != 0) {
+            if (si == '0') {
+                pattern2++
+            }
+        } else {
+            if (si == '1') {
+                pattern2++
+            }
+        }
+    }
+
+    println(min(pattern1, pattern2))
 }
 
 fun solveABC124B() {
