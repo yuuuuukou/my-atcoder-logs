@@ -8,7 +8,32 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC134B()
+    solveABC134C()
+}
+
+fun solveABC134C() {
+    val n = readInt()
+    val a = mutableListOf<Int>()
+    repeat(n) {
+        val ai = readInt()
+        a.add(ai)
+    }
+
+    val aSorted = a.toList().sortedDescending()
+    val max = aSorted[0]
+    val next = aSorted[1]
+
+    for (ai in a) {
+        if (ai == max) {
+            if (max == next) {
+                println(max)
+            } else {
+                println(next)
+            }
+        } else {
+            println(max)
+        }
+    }
 }
 
 fun solveABC134B() {
