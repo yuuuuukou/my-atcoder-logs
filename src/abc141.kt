@@ -8,15 +8,35 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC141B()
+    solveABC141C()
+}
+
+fun solveABC141C() {
+    val (n, k, q) = readInts()
+
+    val cnt = Array(100001) { 0 }
+    repeat(q) {
+        val ai = readInt()
+
+        cnt[ai] += 1
+    }
+
+    for (i in 1..n) {
+        // 減点数(問題数-得点数)が保有ポイント内におさまればラウンド突破
+        if (q - cnt[i] < k) {
+            println("Yes")
+        } else {
+            println("No")
+        }
+    }
 }
 
 fun solveABC141B() {
     val s = readLn()
 
     var res = true
-    for ((i,si) in s.withIndex()) {
-        if (i%2==0) {
+    for ((i, si) in s.withIndex()) {
+        if (i % 2 == 0) {
             if (si !in arrayOf('R', 'U', 'D')) {
                 res = false
             }
