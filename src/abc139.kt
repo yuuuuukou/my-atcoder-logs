@@ -1,3 +1,5 @@
+import kotlin.math.max
+
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
 private fun readInt() = readLn().toInt()
@@ -8,7 +10,30 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC139A()
+    solveABC139C()
+}
+
+fun solveABC139C() {
+    val n = readInt()
+    val h = readInts()
+
+    var before = 0
+    var cnt = -1
+    var res = 0
+    for (hi in h) {
+        if (before >= hi) {
+            cnt++
+        }
+
+        res = max(res, cnt)
+
+        if (before < hi) {
+            cnt = 0
+        }
+        before = hi
+    }
+
+    println(res)
 }
 
 private fun solveABC139B() {
