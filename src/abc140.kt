@@ -1,3 +1,5 @@
+import kotlin.math.min
+
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
 private fun readInt() = readLn().toInt()
@@ -8,7 +10,23 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC140B()
+    solveABC140C()
+}
+
+fun solveABC140C() {
+    val n = readInt()
+    val b = readInts()
+
+    var beforeMax = Int.MAX_VALUE
+    var sum = 0
+    for (bi in b) {
+        sum += min(beforeMax, bi)
+
+        beforeMax = bi
+    }
+    sum += b[b.lastIndex]
+
+    println(sum)
 }
 
 fun solveABC140B() {
