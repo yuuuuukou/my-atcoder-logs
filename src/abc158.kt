@@ -8,7 +8,19 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC158B()
+    solveABC158C()
+}
+
+fun solveABC158C() {
+    val (a, b) = readInts()
+    for (i in 1..1000) {
+        if ((i * 0.08).toInt() == a && (i * 0.1).toInt() == b) {
+            println(i)
+            return
+        }
+    }
+
+    println(-1)
 }
 
 fun solveABC158B() {
@@ -20,9 +32,9 @@ fun solveABC158B() {
     }
 
     // abのセットが組める分
-    val set = n/(a+b)
+    val set = n / (a + b)
     // セットから余る分
-    val mod = n%(a+b)
+    val mod = n % (a + b)
 
     println(set * a + min(mod, a))
 }
