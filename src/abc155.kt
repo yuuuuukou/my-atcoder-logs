@@ -6,7 +6,30 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC155B()
+    solveABC155C()
+}
+
+fun solveABC155C() {
+    val n = readInt()
+    val map = mutableMapOf<String, Int>()
+
+    var max = 0
+    repeat(n) {
+        val si = readLn()
+        map[si] = (map[si] ?: 0) + 1
+        max = kotlin.math.max(max, map[si]!!)
+    }
+
+    val res = mutableListOf<String>()
+    for (item in map) {
+        if (item.value == max) {
+            res.add(item.key)
+        }
+    }
+
+    for (item in res.sorted()) {
+        println(item)
+    }
 }
 
 fun solveABC155B() {
