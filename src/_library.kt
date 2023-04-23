@@ -211,4 +211,11 @@ class _library {
         }
         return left
     }
+
+    /**
+     * ref: https://qiita.com/drken/items/0c88a37eec520f82b788
+     */
+    fun gcd(a: Long, b: Long): Long {
+        return if (b == 0L) a else gcd(b, a % b)
+    }
 }

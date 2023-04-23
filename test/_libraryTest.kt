@@ -47,4 +47,13 @@ class _libraryTest {
             assertEquals(expected[i], _library().upperBound(list, i))
         }
     }
+
+    @Test
+    fun gcd() {
+        val a = 2L
+        val b = 1L
+        val expected = 1L
+
+        assertEquals(expected, _library().gcd(a, b))
+    }
 }
