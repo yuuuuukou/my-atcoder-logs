@@ -6,7 +6,29 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC162B()
+    solveABC162C()
+}
+
+fun solveABC162C() {
+    val k = readInt()
+
+    fun gcd(a: Long, b: Long): Long {
+        return if (b == 0L) a else gcd(b, a % b)
+    }
+
+    var sum = 0L
+    for (a in 1..k) {
+        for (b in 1..k) {
+            for (c in 1..k) {
+                val tmp1 = gcd(b.toLong(), a.toLong())
+                val tmp2 = gcd(c.toLong(), b.toLong())
+                val tmp3 = gcd(tmp2, tmp1)
+                sum += tmp3
+            }
+        }
+    }
+
+    println(sum)
 }
 
 fun solveABC162B() {
