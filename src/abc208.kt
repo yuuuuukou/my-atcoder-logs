@@ -6,7 +6,26 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC208B()
+    solveABC208C()
+}
+
+fun solveABC208C() {
+    val (n, k) = readLongs()
+    val a = readLongs()
+
+    val map = mutableMapOf<Long, Int>()
+    val aSorted = a.toList().sorted()
+    for ((i, ai) in aSorted.withIndex()) {
+        map[ai] = i + 1
+    }
+
+    for (ai in a) {
+        if (k % n >= map[ai]!!) {
+            println(k / n + 1)
+        } else {
+            println(k / n)
+        }
+    }
 }
 
 fun solveABC208B() {
