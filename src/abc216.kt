@@ -8,7 +8,28 @@ private fun readDouble() = readString().toDouble()
 private fun readDoubles() = readString().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC216B()
+    solveABC216C()
+}
+
+fun solveABC216C() {
+    var n = readLong()
+
+    var res = ""
+    while (n >= 2) {
+        if (n % 2 == 0L) {
+            n /= 2
+            res = "B$res"
+        } else {
+            n--
+            res = "A$res"
+        }
+    }
+    while (n > 0) {
+        n--
+        res = "A$res"
+    }
+
+    println(res)
 }
 
 fun solveABC216B() {
@@ -20,6 +41,7 @@ fun solveABC216B() {
                     && person.lastName == this.lastName)
         }
     }
+
     val persons = mutableListOf<Person>()
 
     var res = "No"
