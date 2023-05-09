@@ -10,7 +10,22 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC244B()
+    solveABC244C()
+}
+
+fun solveABC244C() {
+    val n = readInt()
+    val seen = MutableList(2 * n + 2) { index -> index }
+    seen.remove(0)
+    while (seen.isNotEmpty()) {
+        // takahashi
+        println(seen[0])
+        seen.removeAt(0)
+        // aoki
+        val aoki = readInt()
+        if (aoki == 0) return
+        seen.remove(aoki)
+    }
 }
 
 enum class Direction {
