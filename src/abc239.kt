@@ -13,8 +13,37 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC239B()
+    solveABC239C()
 }
+
+fun solveABC239C() {
+    val (x1, y1, x2, y2) = readInts()
+
+    // 注記・ユークリッド距離から、(±1, ±2)、(±2, ±1)の8パターンが√5になる座標
+    val set1 = mutableSetOf<String>()
+    val set2 = mutableSetOf<String>()
+
+    fun addSet(set: MutableSet<String>, x1: Int, y1: Int) {
+        set.add("${x1 + 1}_${y1 + 2}")
+        set.add("${x1 + 1}_${y1 - 2}")
+        set.add("${x1 - 1}_${y1 + 2}")
+        set.add("${x1 - 1}_${y1 - 2}")
+        set.add("${x1 + 2}_${y1 + 1}")
+        set.add("${x1 + 2}_${y1 - 1}")
+        set.add("${x1 - 2}_${y1 + 1}")
+        set.add("${x1 - 2}_${y1 - 1}")
+    }
+
+    addSet(set1, x1, y1)
+    addSet(set2, x2, y2)
+
+    if (set1.intersect(set2).isEmpty()) {
+        println("No")
+    } else {
+        println("Yes")
+    }
+}
+
 
 fun solveABC239B() {
     val x = readBigDecimal()
