@@ -1,6 +1,7 @@
 import kotlin.math.max
 
-private fun readString() = readLine()!!
+private val reader = System.`in`.bufferedReader()
+private fun readString() = reader.readLine()
 private fun readStrings() = readString().split(" ").toMutableList()
 private fun readInt() = readString().toInt()
 private fun readInts() = readString().split(" ").map { it.toInt() }.toMutableList()
@@ -12,7 +13,35 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC229B()
+    solveABC229C()
+}
+
+fun solveABC229C() {
+    var (n, w) = readLongs()
+    class Cheese(val taste: Long, var gram: Long)
+
+    val list = mutableListOf<Cheese>()
+    repeat(n.toInt()) {
+        val (ai, bi) = readLongs()
+        list.add(Cheese(ai, bi))
+    }
+
+    list.sortWith(compareBy { -it.taste })
+
+    var res = 0L
+    for (cheese in list) {
+        if (cheese.gram <= w) {
+            res += cheese.taste * cheese.gram
+            w -= cheese.gram
+        } else {
+            res += cheese.taste * w
+            w -= w
+        }
+
+        if (w == 0L) break
+    }
+
+    println(res)
 }
 
 fun solveABC229B() {
