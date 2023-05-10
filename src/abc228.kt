@@ -10,7 +10,29 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC228B()
+    solveABC228C()
+}
+
+fun solveABC228C() {
+    val (n, k) = readInts()
+
+    val scores = mutableListOf<Int>()
+    repeat(n) {
+        val (pi1, pi2, pi3) = readInts()
+
+        scores.add(pi1 + pi2 + pi3)
+    }
+
+    val sortedScores = scores.toMutableList().sortedDescending()
+    val kthScore = sortedScores[k - 1]
+
+    for (score in scores) {
+        if (score + 300 >= kthScore) {
+            println("Yes")
+        } else {
+            println("No")
+        }
+    }
 }
 
 fun solveABC228B() {
