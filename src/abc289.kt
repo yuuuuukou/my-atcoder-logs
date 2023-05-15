@@ -1,3 +1,5 @@
+import kotlin.math.pow
+
 private val reader = System.`in`.bufferedReader()
 private fun readString() = reader.readLine()
 private fun readStrings() = readString().split(" ").toMutableList()
@@ -12,8 +14,35 @@ private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() 
 
 fun main(args: Array<String>) {
     Thread(null, {
-        solveABC289B()
+        solveABC289C()
     }, "solve", 1.shl(26)).start()
+}
+
+fun solveABC289C() {
+    val (n, m) = readInts()
+    val a = mutableListOf<MutableSet<Int>>()
+    repeat(m) {
+        val ci = readInt()
+        val ai = readInts().toMutableSet()
+        a.add(ai)
+    }
+
+    var cnt = 0
+    for (i in 0 until 2.0.pow(m).toInt()) {
+        val bits = i.toString(2).padStart(n, '0').reversed()
+        val set = mutableSetOf<Int>()
+        for ((i, bit) in bits.withIndex()) {
+            if (bit == '1') {
+                set.addAll(a[i])
+            }
+        }
+        val expected = (1..n).toMutableSet()
+        if (set.containsAll(expected)) {
+            cnt++
+        }
+    }
+
+    println(cnt)
 }
 
 fun solveABC289B() {
