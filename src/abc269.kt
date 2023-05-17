@@ -11,13 +11,43 @@ fun main(args: Array<String>) {
 
 fun solveABC269C() {
     val n = readLong()
+    val nToBinary = n.toString(2)
 
-    for (i in 0..n) {
-        println(i.toString(2))
-        println(i.toString(2).toByte(2))
+    fun a(list: MutableList<String>, next: String) {
+        if (list.isEmpty()) {
+            if (next == "0") {
+                list.add("0")
+            } else {
+                list.add("0")
+                list.add("1")
+            }
+            return
+        }
+
+        if (next == "0") {
+            for (i in 0..list.lastIndex) {
+                list[i] = list[i] + "0"
+            }
+        } else {
+            list.addAll(list)
+            for (i in 0..list.lastIndex / 2) {
+                list[i] = list[i] + "0"
+            }
+            for (i in list.lastIndex / 2 + 1..list.lastIndex) {
+                list[i] = list[i] + "1"
+            }
+        }
     }
 
-    // わからん、解説ACする
+    val list = mutableListOf<String>()
+    for (s in nToBinary) {
+        a(list, s.toString())
+    }
+
+
+    for (item in list.sorted()) {
+        println(item.toLong(2))
+    }
 }
 
 fun solveABC269D() {
