@@ -1,22 +1,32 @@
-import kotlin.math.max
-import kotlin.math.min
-
 fun main(args: Array<String>) {
     solveABC262C()
 }
 
 fun solveABC262C() {
+    // a1 a2 a3 a4
+    //  1  3  2  4
+    // -----------
+    // (i,j)
+    // -> 1,4 -> a1, a4 -> 1, 4 -> min 1 = i, max 4 = j
+    // -> 2,3 -> a2, a3 -> 3, 2 -> min 2 = i, max 3 = j
+    // => indexと値が一致 or 交換可能の場合にcnt
     val n = readLine()!!.toInt()
     val a = readLine()!!.split(" ").map { it.toInt() }
 
-    var cnt = 0
+    var cnt = 0L
+    // 値とindexが同値
+    val same = mutableSetOf<Pair<Int, Int>>()
+    // 値とindexが異なる
+    val different = mutableSetOf<Pair<Int, Int>>()
     for (i in 0 until n) {
-        val ai = a[i]
-        for (j in i until n) {
-            val aj = a[j]
-
-            if (max(ai, aj) == i + 1 && min(ai, aj) == j + 1) {
+        if (a[i] == i + 1) {
+            cnt += same.count()
+            same.add(Pair(i + 1, a[i]))
+        } else {
+            if (different.contains(Pair(a[i], i + 1))) {
                 cnt++
+            } else {
+                different.add(Pair(i + 1, a[i]))
             }
         }
     }
