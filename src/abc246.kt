@@ -1,3 +1,4 @@
+import kotlin.math.max
 import kotlin.math.sqrt
 
 private fun readString() = readLine()!!
@@ -12,13 +13,47 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC246B()
+    solveABC246C()
+}
+
+fun solveABC246C() {
+    var (n, k, x) = readInts()
+    val a = readInts().sortedDescending().toMutableList()
+
+    var cost = 0L
+
+    // 一旦クーポンが無駄にならない範囲で使用
+    for (i in a.indices) {
+        if (k > 0) {
+            if (a[i] >= x) {
+                var num = if (a[i] / x <= k) a[i] / x else 1
+                a[i] -= num * x
+                cost += max(a[i], 0)
+                k -= num
+            } else {
+                cost += a[i]
+            }
+        } else {
+            cost += a[i]
+        }
+    }
+
+    // 無駄になってもいいのでクーポンを使いきる
+    a.sortDescending()
+    for (i in a.indices) {
+        if (k > 0) {
+            cost -= a[i]
+            k--
+        }
+    }
+
+    println(cost)
 }
 
 fun solveABC246B() {
     val (a, b) = readDoubles()
     val c = sqrt(a * a + b * b)
-    println("${a/c} ${b/c}")
+    println("${a / c} ${b / c}")
 }
 
 fun solveABC246A() {
