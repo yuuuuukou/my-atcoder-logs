@@ -1,3 +1,5 @@
+import kotlin.math.absoluteValue
+
 private fun readString() = readLine()!!
 private fun readStrings() = readString().split(" ").toMutableList()
 private fun readInt() = readString().toInt()
@@ -6,7 +8,37 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC224B()
+    solveABC224C()
+}
+
+fun solveABC224C() {
+    val n = readInt()
+
+    val list = mutableListOf<Pair<Int, Int>>()
+    repeat(n) {
+        val (xi, yi) = readInts()
+        list.add(Pair(xi, yi))
+    }
+
+    var cnt = 0
+    for (i in 0 until n) {
+        for (j in i until n) {
+            for (k in j until n) {
+                if (i == j || j == k || k == i) continue
+
+                val ans =
+                    1.0 / 2.0 * (
+                            (list[i].first - list[k].first) * (list[j].second - list[k].second)
+                                    - (list[j].first - list[k].first) * (list[i].second - list[k].second)
+                            ).absoluteValue
+                if (ans > 0) {
+                    cnt++
+                }
+            }
+        }
+    }
+
+    println(cnt)
 }
 
 fun solveABC224B() {
