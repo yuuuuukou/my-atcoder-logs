@@ -47,7 +47,6 @@ class _library {
      * コードの参考: https://koboshi-kyopro.hatenablog.com/entry/2021/07/21/193611
      * コメントの参考: https://qiita.com/Nikkely/items/0ddca51b3c0e60afbaab
      */
-
     fun nextPermutation(array: MutableList<Int>): Boolean {
         // i: array[i] < array[i + 1]を満たすもののうちインデックス最大のものを探す。のでdownToでループ
         for (i in array.lastIndex - 1 downTo 0) {
