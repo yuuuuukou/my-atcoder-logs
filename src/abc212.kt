@@ -1,39 +1,46 @@
+import kotlin.math.absoluteValue
 import kotlin.math.min
-import kotlin.system.exitProcess
+
+private val reader = System.`in`.bufferedReader()
+private fun readString() = reader.readLine()
+private fun readStrings() = readString().split(" ").toMutableList()
+private fun readInt() = readString().toInt()
+private fun readInts() = readString().split(" ").map { it.toInt() }.toMutableList()
+private fun readLong() = readString().toLong()
+private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
+private fun readDouble() = readString().toDouble()
+private fun readDoubles() = readString().split(" ").map { it.toDouble() }.toMutableList()
+private fun readBigDecimal() = readString().toBigDecimal()
+private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
     solveABC212C()
 }
 
 fun solveABC212C() {
-    val (n, m) = readLine()!!.split(" ").map { it.toLong() }
-    val a = readLine()!!.split(" ").map { it.toLong() }.sorted()
-    val b = readLine()!!.split(" ").map { it.toLong() }.sorted()
+    val (n, m) = readInts()
+    val a = readInts().distinct().sorted()
+    val b = readInts().distinct().sorted()
 
-    var result = Long.MAX_VALUE
+    var res = Int.MAX_VALUE
+    var aIndex = 0
+    var bIndex = 0
+    while (aIndex <= a.lastIndex) {
+        if (aIndex > a.lastIndex || bIndex > b.lastIndex) break
+        while (bIndex <= b.lastIndex) {
+            if (aIndex > a.lastIndex) break
+            res = min(res, (a[aIndex] - b[bIndex]).absoluteValue)
 
-    for (ai in a) {
-        val searchResult = b.binarySearch(ai)
-        if (searchResult == 0) {
-            println("0")
-            exitProcess(0)
-        }
-
-        val backIndex = -searchResult - 2
-        val forwardIndex = -searchResult - 1
-
-        if (backIndex >= 0) {
-            val back = b[backIndex]
-            result = min(result, ai - back)
-        }
-
-        if (forwardIndex < b.size) {
-            val forward = b[forwardIndex]
-            result = min(result, forward - ai)
+            if (a[aIndex] <= b[bIndex]) {
+                // aiがbi以下であれば、昇順ソートしていてbi側のループをこれ以上回しても意味がないのでaiを進める
+                aIndex++
+            } else {
+                bIndex++
+            }
         }
     }
 
-    println(result)
+    println(res)
 }
 
 fun solveABC212B() {
