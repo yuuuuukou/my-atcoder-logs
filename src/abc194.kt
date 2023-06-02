@@ -1,22 +1,47 @@
 import kotlin.math.*
 
+private val reader = System.`in`.bufferedReader()
+private fun readString() = reader.readLine()
+private fun readStrings() = readString().split(" ").toMutableList()
+private fun readInt() = readString().toInt()
+private fun readInts() = readString().split(" ").map { it.toInt() }.toMutableList()
+private fun readLong() = readString().toLong()
+private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
+private fun readDouble() = readString().toDouble()
+private fun readDoubles() = readString().split(" ").map { it.toDouble() }.toMutableList()
+private fun readBigDecimal() = readString().toBigDecimal()
+private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
+
 fun main(args: Array<String>) {
     solveABC194C()
 }
 
-// FIXME: TLE
 fun solveABC194C() {
-    val n = readLine()!!.toInt()
-    val a = readLine()!!.split(" ").map { it.toInt() }
+    val n = readInt()
+    val a = readInts()
 
-    var sum = 0
-    for (i in 2..n) {
-        for (j in 1..(i - 1)) {
-            sum += (a[i - 1] - a[j - 1]).toDouble().pow(2).toInt()
+    val map = mutableMapOf<Int, Long>().toSortedMap()
+    for (ai in a) {
+        map[ai] = (map[ai] ?: 0) + 1
+    }
+
+    var res = 0L
+//    for (item1 in map) {
+//        for (item2 in map) {
+//            if (item1.key >= item2.key) continue
+//
+//            res += (item1.key - item2.key) * (item1.key - item2.key) * item1.value * item2.value
+//        }
+//    }
+    for (i in -200..200) {
+        for (j in i + 1..200) {
+            if (map[i] == null || map[j] == null) continue
+
+            res += (i - j).toLong() * (i - j).toLong() * map[i]!! * map[j]!!
         }
     }
 
-    println(sum)
+    println(res)
 }
 
 fun solveABC194B() {
