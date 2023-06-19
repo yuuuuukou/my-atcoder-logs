@@ -1,3 +1,4 @@
+import java.math.BigDecimal
 import kotlin.math.min
 
 private fun readLn() = readLine()!!
@@ -6,9 +7,33 @@ private fun readInt() = readLn().toInt()
 private fun readInts() = readLn().split(" ").map { it.toInt() }.toMutableList()
 private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
+private fun readBigDecimal() = readLn().toBigDecimal()
+private fun readBigDecimals() = readLn().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC177B()
+    solveABC177C()
+}
+
+fun solveABC177C() {
+    val n = readInt()
+    val a = readBigDecimals()
+
+    val list = mutableListOf<BigDecimal>()
+    for (ai in a) {
+        if (list.isEmpty()) {
+            list.add(ai)
+        } else {
+            val tmp = list[list.lastIndex] + ai
+            list.add(tmp)
+        }
+    }
+
+    var sum = 0.toBigDecimal()
+    for ((i, ai) in a.withIndex()) {
+        sum += ai * (list[list.lastIndex] - list[i])
+    }
+
+    println(sum.remainder(1000000007.toBigDecimal()))
 }
 
 fun solveABC177B() {
@@ -19,7 +44,7 @@ fun solveABC177B() {
     for (i in 0..s.length - t.length) {
         var distance = 0
         for (j in 0 until t.length) {
-            if (s[i+j] == t[j]) {
+            if (s[i + j] == t[j]) {
                 // match
             } else {
                 distance++
