@@ -8,7 +8,18 @@ private fun readLong() = readString().toLong()
 private fun readLongs() = readString().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC179B()
+    solveABC179C()
+}
+
+fun solveABC179C() {
+    val n = readInt()
+
+    var cnt = 0
+    for (a in 1 until n) {
+        cnt += (n - 1) / a
+    }
+
+    println(cnt)
 }
 
 fun solveABC179B() {
