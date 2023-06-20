@@ -11,7 +11,45 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC296A()
+    solveABC296B()
+}
+
+fun solveABC296B() {
+    val s = mutableListOf<String>()
+    repeat(8) {
+        val si = readString()
+        s.add(si)
+    }
+
+    for (i in 0 until 8) {
+        for (j in 0 until 8) {
+            if (s[i][j] == '*') {
+                val jj = when (j) {
+                    0 -> "a"
+                    1 -> "b"
+                    2 -> "c"
+                    3 -> "d"
+                    4 -> "e"
+                    5 -> "f"
+                    6 -> "g"
+                    7 -> "h"
+                    else -> ""
+                }
+                val ii = when (i) {
+                    0 -> "8"
+                    1 -> "7"
+                    2 -> "6"
+                    3 -> "5"
+                    4 -> "4"
+                    5 -> "3"
+                    6 -> "2"
+                    7 -> "1"
+                    else -> ""
+                }
+                println("$jj$ii")
+            }
+        }
+    }
 }
 
 fun solveABC296A() {
