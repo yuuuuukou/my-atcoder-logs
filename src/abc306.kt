@@ -11,7 +11,12 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC306A()
+    solveABC306B()
+}
+
+fun solveABC306B() {
+    val a = readInts()
+    println(a.reversed().joinToString("").toBigInteger(2))
 }
 
 fun solveABC306A() {
