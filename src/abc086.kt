@@ -1,3 +1,4 @@
+import kotlin.math.absoluteValue
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -14,7 +15,44 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC086B()
+    solveABC086C()
+}
+
+fun solveABC086C() {
+    val n = readInt()
+
+    var preT = 0
+    var preX = 0
+    var preY = 0
+    repeat(n) {
+        var (ti, xi, yi) = readInts()
+        val tiBak = ti
+        ti -= preT
+
+        if ((preX - xi).absoluteValue <= ti) {
+            ti -= (preX - xi).absoluteValue
+        } else {
+            println("No")
+            return
+        }
+        if ((preY - yi).absoluteValue <= ti) {
+            ti -= (preY - yi).absoluteValue
+        } else {
+            println("No")
+            return
+        }
+
+        if (ti % 2 != 0) {
+            println("No")
+            return
+        }
+
+        preT = tiBak
+        preX = xi
+        preY = yi
+    }
+
+    println("Yes")
 }
 
 fun solveABC086B() {
