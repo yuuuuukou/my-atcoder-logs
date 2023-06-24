@@ -6,7 +6,19 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC083A()
+    solveABC083C()
+}
+
+fun solveABC083C() {
+    var (x, y) = readLongs()
+
+    var cnt = 1
+    while (x * 2 <= y) {
+        x *= 2
+        cnt++
+    }
+
+    println(cnt)
 }
 
 fun solveABC083B() {
