@@ -6,7 +6,54 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC079B()
+    solveABC079C()
+}
+
+fun solveABC079C() {
+    val abcd = readLn()
+
+    for (i in 0..1) {
+        for (j in 0..1) {
+            for (k in 0..1) {
+                var exp = abcd.substring(0..0)
+                var num = abcd.substring(0..0).toInt()
+
+                if (i == 0) {
+                    exp += "+"
+                    exp += abcd.substring(1..1)
+                    num += abcd.substring(1..1).toInt()
+                } else {
+                    exp += "-"
+                    exp += abcd.substring(1..1)
+                    num -= abcd.substring(1..1).toInt()
+                }
+                if (j == 0) {
+                    exp += "+"
+                    exp += abcd.substring(2..2)
+                    num += abcd.substring(2..2).toInt()
+                } else {
+                    exp += "-"
+                    exp += abcd.substring(2..2)
+                    num -= abcd.substring(2..2).toInt()
+                }
+                if (k == 0) {
+                    exp += "+"
+                    exp += abcd.substring(3..3)
+                    num += abcd.substring(3..3).toInt()
+                } else {
+                    exp += "-"
+                    exp += abcd.substring(3..3)
+                    num -= abcd.substring(3..3).toInt()
+                }
+
+                if (num == 7) {
+                    exp += "=7"
+                    println(exp)
+                    return
+                }
+            }
+        }
+    }
 }
 
 fun solveABC079B() {
