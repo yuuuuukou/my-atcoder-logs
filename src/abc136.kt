@@ -10,7 +10,24 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC136A()
+    solveABC136C()
+}
+
+fun solveABC136C() {
+    val n = readInt()
+    val h = readInts()
+
+    for (i in 0 until n - 1) {
+        if (h[i] >= h[i + 1] && ((i == 0) || (i != 0 && h[i - 1] < h[i]))) {
+            h[i]--
+        }
+        if (h[i] > h[i + 1]) {
+            println("No")
+            return
+        }
+    }
+
+    println("Yes")
 }
 
 fun solveABC136B() {
