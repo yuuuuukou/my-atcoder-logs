@@ -8,7 +8,38 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC121A()
+    solveABC121C()
+}
+
+fun solveABC121C() {
+    val (n, m) = readLongs()
+
+    class Drink(val price: Long, val stock: Long)
+
+    val list = mutableListOf<Drink>()
+    repeat(n.toInt()) {
+        val (ai, bi) = readLongs()
+        list.add(Drink(ai, bi))
+    }
+    list.sortBy { it.price }
+
+    var cost = 0L
+    var num = 0L
+    for (i in 0 until n.toInt()) {
+        if (num == m) {
+            break
+        }
+
+        if (m - num < list[i].stock) {
+            cost += (m - num) * list[i].price
+            num = m
+        } else {
+            cost += list[i].stock * list[i].price
+            num += list[i].stock
+        }
+    }
+
+    println(cost)
 }
 
 fun solveABC121B() {
