@@ -11,7 +11,20 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC120A()
+    solveABC120C()
+}
+
+fun solveABC120C() {
+    val s = readLn()
+    val left = s.substring(0..s.length / 2 - 1)
+    val right = s.substring(s.length / 2..s.lastIndex)
+
+    val leftZero = left.count { it == '0' }
+    val leftOne = left.count { it == '1' }
+    val rightZero = right.count { it == '0' }
+    val rightOne = right.count { it == '1' }
+
+    println((min(leftZero, rightOne) + min(leftOne, rightZero)) * 2)
 }
 
 fun solveABC120B() {
