@@ -12,7 +12,24 @@ private fun readDouble() = readLn().toDouble()
 private fun readDoubles() = readLn().split(" ").map { it.toDouble() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC135B()
+    solveABC135C()
+}
+
+fun solveABC135C() {
+    val n = readInt()
+    val a = readInts()
+    val b = readInts()
+
+    var sum = 0L
+    for (i in 0 until n) {
+        sum += min(a[i], b[i])
+        if (a[i] < b[i]) {
+            sum += min(b[i] - a[i], a[i + 1])
+            a[i + 1] -= min(b[i] - a[i], a[i + 1])
+        }
+    }
+
+    println(sum)
 }
 
 fun solveABC135B() {
