@@ -6,7 +6,39 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC151B()
+    solveABC151C()
+}
+
+fun solveABC151C() {
+    val (n, m) = readInts()
+
+    val waCounts = MutableList(n + 1) { 0 }
+    val isSolved = MutableList(n + 1) { 0 }
+    var acCounts = MutableList(n + 1) { 0 }
+    repeat(m) {
+        val (pi, si) = readStrings()
+
+        if (isSolved[pi.toInt()] == 0) {
+            when (si) {
+                "WA" -> {
+                    waCounts[pi.toInt()] += 1
+                }
+                "AC" -> {
+                    acCounts[pi.toInt()] = 1
+                    isSolved[pi.toInt()] = 1
+                }
+            }
+        }
+    }
+
+    var waCountSum = 0
+    for (i in 1 .. n) {
+        if (isSolved[i] == 1) {
+            waCountSum += waCounts[i]
+        }
+    }
+
+    println("${acCounts.sum()} $waCountSum")
 }
 
 fun solveABC151B() {
