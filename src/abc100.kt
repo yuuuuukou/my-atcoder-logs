@@ -6,7 +6,24 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC100B()
+    solveABC100C()
+}
+
+fun solveABC100C() {
+    val n = readInt()
+    val a = readInts()
+
+    var cnt = 0
+    for (ai in a) {
+        if (ai%2 != 0) continue
+
+        var tmp = ai
+        while (tmp % 2 == 0) {
+            tmp /= 2
+            cnt++
+        }
+    }
+    println(cnt)
 }
 
 fun solveABC100B() {
