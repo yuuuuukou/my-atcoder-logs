@@ -6,7 +6,22 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC115B()
+    solveABC115C()
+}
+
+fun solveABC115C() {
+    val (n, k) = readInts()
+    val h = mutableListOf<Int>()
+    repeat(n) {
+        h.add(readInt())
+    }
+    h.sort()
+
+    val differences = mutableListOf<Int>()
+    for (i in 0..h.lastIndex - (k - 1)) {
+        differences.add(h[i + (k - 1)] - h[i])
+    }
+    println(differences.min())
 }
 
 fun solveABC115B() {
