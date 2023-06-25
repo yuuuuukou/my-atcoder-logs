@@ -13,7 +13,23 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC295B()
+    solveABC295C()
+}
+
+fun solveABC295C() {
+    val n = readInt()
+    val a = readInts()
+
+    val map = mutableMapOf<Int, Int>()
+    for (ai in a) {
+        map[ai] = (map[ai] ?: 0) + 1
+    }
+    var cnt = 0
+    for (item in map) {
+        cnt += item.value / 2
+    }
+
+    println(cnt)
 }
 
 fun solveABC295B() {
