@@ -11,7 +11,40 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC296B()
+    solveABC296C()
+}
+
+fun solveABC296C() {
+    val (n, x) = readInts()
+    val a = readInts()
+
+    /**
+     * ref: https://webbibouroku.com/Blog/Article/cs-lowerbound-upperbound
+     */
+    fun lowerBound(list: List<Int>, value: Int): Int {
+        var left = 0
+        var right = list.lastIndex
+        while (left <= right) {
+            val mid = (left + right) / 2
+            if (list[mid] < value) {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        }
+        return left
+    }
+
+    a.sort()
+    for (i in 0 until n) {
+        val aj =  a[i] - x
+        if (a.binarySearch(aj) >= 0) {
+            println("Yes")
+            return
+        }
+    }
+
+    println("No")
 }
 
 fun solveABC296B() {
