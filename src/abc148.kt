@@ -1,3 +1,5 @@
+import kotlin.math.min
+
 private fun readLn() = readLine()!!
 private fun readStrings() = readLn().split(" ").toMutableList()
 private fun readInt() = readLn().toInt()
@@ -6,7 +8,35 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC148C()
+    solveABC148D()
+}
+
+fun solveABC148D() {
+    val n = readInt()
+    val a = readInts()
+
+    var res = Int.MAX_VALUE
+    var target = 0
+    for ((i, ai) in a.withIndex()) {
+        if (ai == 1) {
+            // reset
+            if (target > 0) {
+                res = min(n - (target - 1), res)
+            }
+            target = 2
+        } else if (ai == target) {
+            target++
+        }
+    }
+    if (target > 0) {
+        res = min(n - (target - 1), res)
+    }
+
+    if (res == Int.MAX_VALUE) {
+        println("-1")
+    } else {
+        println(res)
+    }
 }
 
 fun solveABC148C() {
