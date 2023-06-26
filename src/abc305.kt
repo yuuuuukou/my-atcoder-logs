@@ -1,4 +1,6 @@
 import kotlin.math.absoluteValue
+import kotlin.math.max
+import kotlin.math.min
 
 private val reader = System.`in`.bufferedReader()
 private fun readString() = reader.readLine()
@@ -13,7 +15,40 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC305B()
+    solveABC305C()
+}
+
+fun solveABC305C() {
+    val (h, w) = readInts()
+
+    val s = mutableListOf<String>()
+    repeat(h) {
+        s.add(readString())
+    }
+
+    var left = Int.MAX_VALUE
+    var right = Int.MIN_VALUE
+    var top = Int.MAX_VALUE
+    var buttom = Int.MIN_VALUE
+    for (i in 0 until h) {
+        for (j in 0 until w) {
+            if (s[i][j] == '#') {
+                left = min(left, j)
+                right = max(right, j)
+                top = min(top, i)
+                buttom = max(buttom, i)
+            }
+        }
+    }
+
+    for (i in top..buttom) {
+        for (j in left..right) {
+            if (s[i][j] === '.') {
+                println("${i + 1} ${j + 1}")
+                return
+            }
+        }
+    }
 }
 
 fun solveABC305B() {
