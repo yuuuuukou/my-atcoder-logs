@@ -176,7 +176,6 @@ class _library {
         }
     }
 
-
     /**
      * ref: https://webbibouroku.com/Blog/Article/cs-lowerbound-upperbound
      */
@@ -216,5 +215,23 @@ class _library {
      */
     fun gcd(a: Long, b: Long): Long {
         return if (b == 0L) a else gcd(b, a % b)
+    }
+
+    /**
+     * ref: https://qiita.com/drken/items/a14e9af0ca2d857dad23#3-%E7%B4%84%E6%95%B0%E5%88%97%E6%8C%99
+     */
+    fun getDivisors(n: Long): MutableList<Long> {
+        val res = mutableListOf<Long>()
+
+        var i = 1L
+        while (i * i <= n) {
+            if (n % i == 0L) {
+                res.add(i)
+                if (n / i != i) res.add(n / i)
+            }
+            i++
+        }
+        res.sort()
+        return res
     }
 }
