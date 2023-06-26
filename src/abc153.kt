@@ -6,7 +6,24 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC153C()
+    solveABC153D()
+}
+
+fun solveABC153D() {
+    var h = readLong()
+
+    var cnt = "0".toBigInteger()
+    var monsterCnt = "1".toBigInteger()
+    while (h >= 1) {
+        // 殴る
+        cnt += monsterCnt
+        // 増える
+        monsterCnt *= 2.toBigInteger()
+        // 体力は半減
+        h /= 2
+    }
+
+    println(cnt)
 }
 
 fun solveABC153C() {
