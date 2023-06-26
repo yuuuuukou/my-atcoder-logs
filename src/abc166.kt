@@ -6,7 +6,35 @@ private fun readLong() = readLn().toLong()
 private fun readLongs() = readLn().split(" ").map { it.toLong() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveABC166B()
+    solveABC166C()
+}
+
+fun solveABC166C() {
+    val (n, m) = readInts()
+    val h = readInts()
+
+    val links = MutableList(n + 1) { mutableSetOf<Int>() }
+
+    repeat(m) {
+        val (ai, bi) = readInts()
+        links[ai].add(bi)
+        links[bi].add(ai)
+    }
+
+    var cnt = 0
+    for (i in 1..n) {
+        val target = h[i - 1]
+        var isHighest = true
+        for (link in links[i]) {
+            if (target <= h[link - 1]) {
+                isHighest = false
+            }
+        }
+
+        if (isHighest) cnt++
+    }
+
+    println(cnt)
 }
 
 fun solveABC166B() {
