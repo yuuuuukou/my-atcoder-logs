@@ -1,4 +1,5 @@
 import kotlin.math.max
+import kotlin.math.pow
 
 private val reader = System.`in`.bufferedReader()
 private fun readString() = reader.readLine()
@@ -13,7 +14,44 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookA14()
+    solveTessokuBookB14()
+}
+
+fun solveTessokuBookB14() {
+    val (n, k) = readInts()
+    val a = readInts()
+    val a1 = a.subList(0, n / 2)
+    val a2 = a.subList(n / 2, n)
+
+    val half = n / 2
+    val end = 2.0.pow(half).toInt()
+
+    val p = mutableSetOf<Int>()
+    val q = mutableSetOf<Int>()
+
+    for (i in 0..end) {
+        val bits = i.toString(2).padStart(end.toString(2).length - 1, '0').reversed()
+        var tmp1 = 0
+        var tmp2 = 0
+        for ((i, bit) in bits.withIndex()) {
+            if (bit == '1') {
+                if (a1.lastIndex >= i) tmp1 += a1[i]
+                if (a2.lastIndex >= i) tmp2 += a2[i]
+            }
+        }
+        p.add(tmp1)
+        q.add(tmp2)
+    }
+
+    for (pi in p) {
+        val target = k - pi
+        if (q.contains(target)) {
+            println("Yes")
+            return
+        }
+    }
+
+    println("No")
 }
 
 fun solveTessokuBookA14() {
