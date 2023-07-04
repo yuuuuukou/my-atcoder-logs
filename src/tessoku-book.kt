@@ -17,7 +17,49 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookB16()
+    solveTessokuBookA17()
+}
+
+fun solveTessokuBookA17() {
+    val n = readInt()
+    val a = readInts()
+    val b = readInts()
+
+    val beforeRoute = MutableList(n + 1) { -1 }
+    val dp = MutableList(n + 1) { Int.MAX_VALUE }
+
+    beforeRoute[0] = -1
+    beforeRoute[1] = -1
+    beforeRoute[2] = 1
+    dp[0] = 0
+    dp[1] = 0
+    dp[2] = dp[1] + a[0]
+
+    for (i in 3 .. n) {
+        // from i-1
+        val fromMinusOne = dp[i - 1] + a[i - 2]
+
+        // from i-2
+        val fromMinusTwo = dp[i - 2] + b[i - 3]
+
+        if (fromMinusOne <= fromMinusTwo) {
+            beforeRoute[i] = i - 1
+            dp[i] = fromMinusOne
+        } else {
+            beforeRoute[i] = i - 2
+            dp[i] = fromMinusTwo
+        }
+    }
+
+    val res = mutableListOf<Int>()
+    var i = n
+    while (i != -1) {
+        res.add(i)
+        i = beforeRoute[i]
+    }
+
+    println(res.count())
+    println(res.reversed().joinToString(" "))
 }
 
 fun solveTessokuBookB16() {
