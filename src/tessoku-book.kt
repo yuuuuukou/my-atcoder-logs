@@ -1,5 +1,6 @@
 import java.util.*
 import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.pow
 
 private val reader = System.`in`.bufferedReader()
@@ -15,7 +16,30 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookA15()
+    solveTessokuBookA16()
+}
+
+fun solveTessokuBookA16() {
+    val n = readInt()
+    val a = readInts()
+    val b = readInts()
+
+    val res = MutableList(n + 1) { Int.MAX_VALUE }
+    res[0] = 0
+    res[1] = 0
+
+    for (i in 2..n) {
+        val to = i
+        val from1 = i - 1
+        res[to] = min(res[to], res[from1] + a[i - 2])
+
+        if (i >= 3) {
+            val from2 = i - 2
+            res[to] = min(res[to], res[from2] + b[i - 3])
+        }
+    }
+
+    println(res[n])
 }
 
 fun solveTessokuBookA15() {
