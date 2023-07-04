@@ -1,3 +1,4 @@
+import java.util.*
 import kotlin.math.max
 import kotlin.math.pow
 
@@ -14,7 +15,33 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookB14()
+    solveTessokuBookA15()
+}
+
+fun solveTessokuBookA15() {
+    // val n = readInt()
+    // val a = readInts()
+
+    val sc = Scanner(System.`in`)
+    val n = sc.nextInt()
+    val a = mutableListOf<Int>()
+    for (i in 0 until n) {
+        a.add(sc.nextInt())
+    }
+
+    val a2 = a.toSortedSet()
+
+    val map = mutableMapOf<Int, Int>()
+    for ((i, ai) in a2.withIndex()) {
+        map[ai] = i + 1
+    }
+
+    val resList = mutableListOf<Int>()
+    for (ai in a) {
+        resList.add(map[ai]!!)
+    }
+
+    println(resList.joinToString(" "))
 }
 
 fun solveTessokuBookB14() {
