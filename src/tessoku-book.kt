@@ -1,4 +1,5 @@
 import java.util.*
+import kotlin.math.absoluteValue
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
@@ -16,7 +17,30 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookA16()
+    solveTessokuBookB16()
+}
+
+fun solveTessokuBookB16() {
+    val n = readInt()
+    val h = readInts()
+
+    val dp = MutableList(n + 1) { Int.MAX_VALUE }
+    dp[0] = 0
+    dp[1] = 0
+
+    for (i in 1 until n) {
+        // i+1
+        if (i + 1 <= n) {
+            dp[i + 1] = min(dp[i + 1], dp[i] + (h[i] - h[i - 1]).absoluteValue)
+        }
+
+        // i+2
+        if (i + 2 <= n) {
+            dp[i + 2] = min(dp[i + 2], dp[i] + (h[i + 1] - h[i - 1]).absoluteValue)
+        }
+    }
+
+    println(dp[n])
 }
 
 fun solveTessokuBookA16() {
