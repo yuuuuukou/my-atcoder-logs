@@ -17,7 +17,72 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookA17()
+    solveTessokuBookA18()
+}
+
+fun solveTessokuBookA18() {
+    val (n, s) = readInts()
+    val a = readInts()
+
+    val dp = MutableList(n + 1) { MutableList(s + 1) { false } }
+
+    for (i in 0 .. n) {
+        for (j in 0 .. s) {
+            if (i == 0) {
+                dp[i][j] = (j == 0)
+            } else {
+                if (dp[i - 1][j]) {
+                    // 1個前まででjにすることができるなら、選ばなければそのままjになる
+                    dp[i][j] = true
+                } else if (j - a[i - 1] >= 0 && dp[i - 1][j - a[i - 1]]) {
+                    // 1個前まででj - a[i]にすることができるなら、選べばjになる
+                    dp[i][j] = true
+                }
+            }
+        }
+    }
+
+    println(if (dp[n][s]) "Yes" else "No")
+}
+
+fun solveTessokuBookB17() {
+    val n = readInt()
+    val h = readInts()
+
+    val beforeRoute = MutableList(n + 1) { -1 }
+    val dp = MutableList(n + 1) { Int.MAX_VALUE }
+
+    beforeRoute[0] = -1
+    beforeRoute[1] = -1
+    dp[0] = 0
+    dp[1] = 0
+
+    for (i in 1 until n) {
+        if (i + 1 <= n) {
+            val plusOneCost = dp[i] + (h[i - 1] - h[i]).absoluteValue
+            if (dp[i + 1] >= plusOneCost) {
+                dp[i + 1] = plusOneCost
+                beforeRoute[i + 1] = i
+            }
+        }
+        if (i + 2 <= n) {
+            val plusTwoCost = dp[i] + (h[i - 1] - h[i + 1]).absoluteValue
+            if (dp[i + 2] >= plusTwoCost) {
+                dp[i + 2] = plusTwoCost
+                beforeRoute[i + 2] = i
+            }
+        }
+    }
+
+    var resList = mutableListOf<Int>()
+    var i = n
+    while (i != -1) {
+        resList.add(i)
+        i = beforeRoute[i]
+    }
+
+    println(resList.count())
+    println(resList.reversed().joinToString(" "))
 }
 
 fun solveTessokuBookA17() {
@@ -35,7 +100,7 @@ fun solveTessokuBookA17() {
     dp[1] = 0
     dp[2] = dp[1] + a[0]
 
-    for (i in 3 .. n) {
+    for (i in 3..n) {
         // from i-1
         val fromMinusOne = dp[i - 1] + a[i - 2]
 
