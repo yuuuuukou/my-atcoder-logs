@@ -17,7 +17,51 @@ private fun readBigDecimal() = readString().toBigDecimal()
 private fun readBigDecimals() = readString().split(" ").map { it.toBigDecimal() }.toMutableList()
 
 fun main(args: Array<String>) {
-    solveTessokuBookA18()
+    solveTessokuBookB18()
+}
+
+fun solveTessokuBookB18() {
+    val (n, s) = readInts()
+    val p = readInts()
+
+    val dp = MutableList(n + 1) { MutableList(s + 1) { false } }
+
+    for (i in 0..n) {
+        for (j in 0..s) {
+            if (i == 0) {
+                dp[i][j] = j == 0
+            } else {
+                if (dp[i - 1][j]) {
+                    // 1個前でjにできるなら、選ばなければいい
+                    dp[i][j] = true
+                } else if (j - p[i - 1] >= 0 && dp[i - 1][j - p[i - 1]]) {
+                    // 1個前まででj - p[i-1]にできるなら、選べばいい
+                    dp[i][j] = true
+                }
+            }
+        }
+    }
+
+    if (!dp[n][s]) {
+        println(-1)
+        return
+    }
+
+    val resList = mutableListOf<Int>()
+    var i = n
+    var j = s
+    while (i != 0) {
+        if (dp[i][j]) {
+            if (!dp[i - 1][j]) {
+                j -= p[i - 1]
+                resList.add(i)
+            }
+        }
+        i--
+    }
+
+    println(resList.count())
+    println(resList.reversed().joinToString(" "))
 }
 
 fun solveTessokuBookA18() {
@@ -26,8 +70,8 @@ fun solveTessokuBookA18() {
 
     val dp = MutableList(n + 1) { MutableList(s + 1) { false } }
 
-    for (i in 0 .. n) {
-        for (j in 0 .. s) {
+    for (i in 0..n) {
+        for (j in 0..s) {
             if (i == 0) {
                 dp[i][j] = (j == 0)
             } else {
